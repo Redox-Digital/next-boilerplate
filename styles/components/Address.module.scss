@@ -1,0 +1,15 @@
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  &__elt {
+    > h5 {
+      color: var(--primary);
+    }
+
+    > p {
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+.hero {
+  height: 75vh;
+  height: 75svh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+
+  word-break: break-word;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  padding: 0 var(--sct-horiz-margin);
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--black);
+    z-index: 1;
+  }
+
+  > video {
+    display: none;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  > .hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+    width: 100%;
+    max-width: var(--large-content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px 0;
+    z-index: 2;
+
+    > a {
+      display: block;
+      color: var(--primary);
+
+      animation: bumping 2s infinite linear;
+    }
+
+    > p {
+      margin: 0;
+    }
+
+    > img {
+      max-width: 100%;
+      width: 100%;
+      height: fit-content;
+      z-index: 2;
+      margin: 0 auto;
+    }
+  }
+
+  @keyframes bumping {
+    0% {
+      transform: translateY(0px);
+    }
+
+    25% {
+      transform: translateY(-2px);
+    }
+    75% {
+      transform: translateY(2px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  &__home {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    justify-content: center;
+
+    > .hero__content {
+      align-items: center;
+      text-align: center;
+
+      > a {
+        width: 60px;
+        height: 60px;
+        border: solid 1px var(--primary-muted);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 50px;
+
+        &:hover {
+          animation: none;
+          transition: all 0.3s ease-in-out;
+          background-color: var(--dark);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero > video {
+    display: inherit;
+  }
+}

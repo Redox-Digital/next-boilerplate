@@ -1,0 +1,132 @@
+// Jakarta
+
+@font-face {
+  font-family: jakarta;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jakarta/PlusJakartaSans-Regular.woff2') format('woff2'),
+    url('/fonts/jakarta/PlusJakartaSans-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: jakarta;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/jakarta/PlusJakartaSans-Medium.woff2') format('woff2'),
+    url('/fonts/jakarta/PlusJakartaSans-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: jakarta;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/jakarta/PlusJakartaSans-SemiBold.woff2') format('woff2'),
+    url('/fonts/jakarta/PlusJakartaSans-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: jakarta;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/jakarta/PlusJakartaSans-Bold.woff2') format('woff2'),
+    url('/fonts/jakarta/PlusJakartaSans-Bold.woff') format('woff');
+}
+
+body {
+  font-family: jakarta, 'Plus Jakarta Sans', sans-serif;
+  // font-family: 'Plus Jakarta Sans', serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--fs-p);
+  color: var(--white);
+}
+
+p {
+  line-height: 1.3em;
+  letter-spacing: 0.01em;
+
+  &:first-of-type {
+    margin-top: 0px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+}
+
+small {
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  line-height: 1.3em;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: var(--fs-h1);
+  // text-transform: uppercase;
+  line-height: 1em;
+  letter-spacing: 0.01em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1em;
+  letter-spacing: 0.02em;
+
+  &.all-caps {
+    font-size: var(--fs-h2-caps);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+}
+
+h3 {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: auto;
+  letter-spacing: 0.03em;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: var(--fs-h4);
+  line-height: auto;
+  letter-spacing: 0.03em;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: var(--fs-h5);
+  line-height: auto;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-weight: 400;
+  font-size: var(--fs-h6);
+  letter-spacing: 0.07em;
+  line-height: auto;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--white);
+  transition: all ease-in-out 0.2s;
+}
+
+a:hover {
+  color: var(--primary);
+  transition: all ease-in-out 0.2s;
+}

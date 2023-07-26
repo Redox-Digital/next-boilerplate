@@ -1,0 +1,309 @@
+.gallery {
+  padding-top: 0;
+  > div {
+    padding-top: var(--vert-spacing);
+    flex-direction: column;
+    gap: var(--vert-spacing);
+  }
+
+  &__images {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--margin);
+    justify-content: flex-start;
+  }
+}
+
+.gallery__overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+
+  &__drop {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+
+    transition: backdrop-filter 0.3s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  > .image {
+    z-index: 11;
+    width: auto;
+    max-width: calc(100% - 2 * var(--margin));
+
+    margin: calc(2 * var(--margin) + 30px) var(--margin) calc(2 * var(--margin) + 50px);
+    // max-height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+
+    aspect-ratio: auto;
+
+    &:hover {
+      > img {
+        cursor: default;
+        transform: none;
+      }
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    > i {
+      position: absolute;
+
+      animation: spin 1.5s linear infinite;
+    }
+
+    > img {
+      height: 100%;
+    }
+
+    > figcaption {
+      position: absolute;
+      height: fit-content;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.6);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: var(--padding);
+      bottom: 0px;
+      left: 0;
+      right: 0;
+      text-align: left;
+    }
+  }
+
+  > .btn {
+    &__close,
+    &__next,
+    &__prev {
+      position: absolute;
+      background: none;
+      border: solid 2px var(--accent-dark);
+      color: var(--accent-dark);
+      transition: background-color 0.3s ease-in-out;
+      z-index: 11;
+
+      &:hover {
+        background-color: var(--dark);
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+    }
+    &__close {
+      position: absolute;
+      right: var(--margin);
+      top: var(--margin);
+      padding: 8px 12px;
+      font-size: var(--fs-sm);
+    }
+
+    &__next,
+    &__prev {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      bottom: var(--margin);
+    }
+
+    &__next {
+      //left: calc(var(--margin) * 2 + 50px);
+      transform: rotate(-90deg) translateY(calc((50px + var(--margin)) / 2));
+    }
+
+    &__prev {
+      //left: var(--margin);
+      transform: rotate(90deg) translateY(calc((50px + var(--margin)) / 2));
+    }
+  }
+}
+
+.image {
+  --col-nb: 2;
+  position: relative;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  width: calc((100% - (var(--col-nb) - 1) * var(--margin)) / var(--col-nb));
+  aspect-ratio: 1 / 1;
+  height: var(--img-width);
+  background-color: var(--gray);
+
+  > img {
+    transition: all 0.3s ease-in-out;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    cursor: pointer;
+    > .image__overlay {
+      opacity: 1;
+      transition: all 0.3s ease-in-out;
+    }
+
+    > img {
+      transition: all 0.3s ease-in-out;
+      transform: scale(1.05);
+    }
+  }
+
+  &__overlay {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    padding: var(--padding);
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+
+    transition: all 0.3s ease-in-out;
+
+    > p {
+      display: flex;
+      word-break: break-word;
+      color: var(--white);
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .image {
+    --col-nb: 2;
+  }
+
+  .gallery__overlay {
+    align-items: center;
+    > .image {
+      z-index: 11;
+      width: fit-content;
+      max-width: calc(100% - (4 * var(--margin) + 2 * 50px));
+      max-height: calc(100% - 2 * var(--vert-spacing));
+      margin: 0;
+      // max-height: 100%;
+      background-color: transparent;
+
+      display: flex;
+      flex-direction: column;
+
+      position: relative;
+
+      aspect-ratio: auto;
+
+      &:hover {
+        > img {
+          cursor: default;
+          transform: none;
+        }
+      }
+
+      > img {
+        display: block;
+
+        height: 100%;
+        width: auto;
+
+        max-height: 100%;
+        max-width: 100%;
+        // object-fit: none;
+      }
+
+      > figcaption {
+        position: absolute;
+        height: fit-content;
+        width: fit-content;
+
+        background: rgba(255, 255, 255, 0.6);
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        align-items: center;
+        padding: var(--padding);
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        text-align: left;
+      }
+    }
+
+    > .btn {
+      &__next,
+      &__prev {
+        bottom: 49%;
+      }
+
+      &__next {
+        left: auto;
+        right: var(--margin);
+        transform: rotate(-90deg);
+      }
+
+      &__prev {
+        right: auto;
+        left: var(--margin);
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .gallery__images {
+    width: 100%;
+  }
+
+  .image {
+    --col-nb: 3;
+
+    > img {
+    }
+  }
+}

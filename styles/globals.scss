@@ -1,0 +1,22 @@
+/********************************
+ * INDEX
+ *
+ * We use BEM and ITCSS inspired methodlogies to name our class and
+ * structure our folders. Have a look at the [README.md](/README.md)
+ * for information about.
+ ********************************/
+
+// Normalize :  CSS resets and normalizing rules to create a foundation for your styles.
+@import './normalize/normalize.scss';
+// @import './normalize/bootstrap-grid.css';
+
+// Settings :  Variable configurations for things like colors, fonts, sizes, etc…
+@import './settings/global.scss';
+@import './settings/variables.scss';
+@import './settings/typographies.scss';
+
+// Layouts : Style rules for elements responsible for layout or structuring.
+// ### Must be imported as a module ###
+
+// Components : Style rules for UI components.
+// ### Must be imported as a module ###

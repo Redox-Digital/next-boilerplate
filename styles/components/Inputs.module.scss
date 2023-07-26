@@ -1,0 +1,40 @@
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+
+  > input,
+  > textarea,
+  > select {
+    width: 100%;
+    padding: var(--padding);
+    background: var(--white);
+    border: 1px solid var(--gray);
+    font-size: var(--fs-sm);
+  }
+
+  > textarea {
+    min-height: 240px;
+  }
+
+  *:required + span::after {
+    content: '*';
+  }
+
+  > span {
+    font-size: var(--fs-h5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    width: calc((100% - var(--margin)) / 2);
+    margin-bottom: var(--margin);
+  }
+
+  .textarea {
+    width: 100%;
+  }
+}

@@ -1,0 +1,92 @@
+html {
+  background-color: var(--dark);
+  scroll-behavior: smooth;
+  font-family: var(--circular-font);
+}
+
+body {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+abbr,
+abbr[title] {
+  border: none;
+  text-decoration: none;
+}
+
+section {
+  padding: var(--sct-vert-margin) var(--sct-horiz-margin);
+  display: flex;
+
+  &.dark {
+    background-color: var(--dark);
+    color: var(--white);
+  }
+
+  &.light {
+    background-color: var(--white);
+    color: var(--black);
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: var(--large-content-width);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Display
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+// Colors
+.color-primary {
+  color: var(--primary) !important;
+}
+.color-accent {
+  color: var(--accent) !important;
+}
+
+.color-dark {
+  color: var(--dark) !important;
+}
+
+.color-accent-dark {
+  color: var(--accent-dark) !important;
+}
+
+// For menu OnScroll
+.bg-dark {
+  background: var(--dark);
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+#phone::before {
+  content: '+41 00 000 00 00';
+  display: inline;
+}
+
+#mail::before {
+  content: 'info@mydomain.com';
+  display: inline;
+}
