@@ -111,12 +111,5 @@ yarn build
 pnpm build
 ```
 
-Finally, run the export command:
+The static files can be found in the `out` folder and directly uploaded to your web host.
 
-```bash
-npm run export
-# or
-yarn export
-# or
-pnpm export
-```
