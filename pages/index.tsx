@@ -35,11 +35,21 @@ export default function Home() {
         <meta name="description" content="" />
         <meta name="author" content="Redox Digital" />
 
+        <meta property="og:title" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="https://mydomain.com/socials/social_thumbnail.png" />
+        <meta property="og:url" content="https://mydomain.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content="https://mydomain.com/socials/social_thumbnail.png" />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
+
       <Hero
         title="My Company"
         home

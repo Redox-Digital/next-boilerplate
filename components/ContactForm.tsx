@@ -3,7 +3,7 @@ import inputStyle from '@/styles/components/Inputs.module.scss';
 import btn from '@/styles/components/Button.module.scss';
 import Link from 'next/link';
 import { FormEventHandler, RefObject, useState } from 'react';
-import TextInput from './TextInput';
+import TextInput from './inputs/TextInput';
 import React from 'react';
 
 export default function ContactForm() {
