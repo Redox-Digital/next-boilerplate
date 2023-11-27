@@ -1,4 +1,4 @@
-import Header from './Menu';
+import Header from './navigation/Menu';
 import Footer from './Footer';
 import Head from 'next/head';
 import Script from 'next/script';

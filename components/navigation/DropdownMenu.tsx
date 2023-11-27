@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import placeholder from '../public/layouts/img-placeholder.png';
-import style from '@/styles/components/Menu.module.scss';
+import style from '@/styles/components/navigation/Menu.module.scss';
 
 export default function DropdownMenu() {
   return (

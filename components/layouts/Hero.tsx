@@ -3,12 +3,12 @@ import style from '@/styles/components/Hero.module.scss';
 import Link from 'next/link';
 import arrowDown from '/public/pictograms/arrow-down.svg';
 import logo from '/public/logos/logoipsum.svg';
-import IntroVideo from './IntroVideo';
+import IntroVideo from '../content/IntroVideo';
 import { useEffect, useState } from 'react';
 
 type Props = {
-  title: string;
-  subtitle: string;
+  title: string | JSX.Element;
+  subtitle: string | JSX.Element;
   source: string;
   home?: boolean;
   opacity?: number;

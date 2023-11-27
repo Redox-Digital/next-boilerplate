@@ -1,40 +1,50 @@
 import Layout from '@/components/Layout';
 import type { AppProps } from 'next/app';
-import localFont from 'next/font/local';
 import '@/styles/globals.scss';
-import Script from 'next/script';
 
-const circular = localFont({
-  src: [
-    { path: '../fonts/circular/CircularStd-Book.otf', weight: '400', style: 'normal' },
-    { path: '../fonts/circular/CircularStd-Medium.otf', weight: '500', style: 'normal' },
-    { path: '../fonts/circular/CircularStd-Bold.otf', weight: '700', style: 'normal' },
-    { path: '../fonts/circular/CircularStd-Black.otf', weight: '900', style: 'normal' },
-  ],
-});
+import { setCookie, getCookie } from '@/components/helpers/CookiesHelper';
+import { useEffect, useState } from 'react';
+import GAnalytics from '@/components/helpers/GAnalytics';
+import CookiesPopUp from '@/components/helpers/CookiesPopUp';
+
+import localFont from 'next/font/local';
+import { Jost } from 'next/font/google';
+
+const jost = Jost({ subsets: ['latin'] });
+const jakarta = localFont({ src: './fonts/PlusJakartaSans-VariableFont_wght.ttf' });
 
 export default function App({ Component, pageProps }: AppProps) {
+  // const gKey = 'G-K20DW8RS8P';
+
+  // const [cookiePolicy, setCookiePolicy] = useState<boolean | undefined>(undefined);
+
+  /* Play once on page load;
+  useEffect(() => {
+    setCookiePolicy(getCookie('lpd') === 'true' || undefined);
+    console.log(getCookie('lpd'));
+  }, []);
+
+  const handleCookiePolicy = (answer: boolean) => {
+    setCookiePolicy(answer);
+    if (answer) setCookie('lpd', answer ? 'true' : 'false', 60);
+  };
+  */
+
   return (
     <>
       {/* Google tag (gtag.js) */}
-      {/* 
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=GKEY_DEV_REMPLACE_IT" />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-K20DW8RS8P');`,
-        }}
-      />
-      */}
+      {/* cookiePolicy && <GAnalytics gKey={gKey} /> */}
 
       <style jsx global>
         {`
           :root {
-            --circular-font: ${circular.style.fontFamily};
+            --jost-font: ${jost.style.fontFamily};
+            --jakarta-font: ${jakarta.style.fontFamily};
           }
         `}
       </style>
+
+      {/* cookiePolicy === undefined && <CookiesPopUp handleCookiePolicy={handleCookiePolicy} /> */}
 
       <Layout>
         <Component {...pageProps} />

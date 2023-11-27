@@ -1,0 +1,41 @@
+.lpd {
+  > section {
+    padding-block: 50px;
+
+    > a:last-of-type {
+      margin-top: var(--margin);
+    }
+  }
+
+  hr {
+    max-width: calc(100% - 2 * var(--sct-horiz-margin));
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-bottom: var(--title-text-space);
+  }
+
+  h2 {
+    margin-top: var(--title-text-space);
+  }
+
+  h3,
+  h4 {
+    margin-top: var(--margin);
+  }
+
+  h2 + h3,
+  h3 + h4 {
+    margin-top: 0;
+  }
+
+  h5 {
+    margin-block: var(--margin);
+  }
+
+  a:hover {
+    cursor: pointer;
+  }
+}

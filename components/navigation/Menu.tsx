@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
 import DropdownMenu from './DropdownMenu';
-import style from '@/styles/components/Menu.module.scss';
-import burgerStyle from '@/styles/components/Burger.module.scss';
-import Button from './Button';
+import style from '@/styles/components/navigation/Menu.module.scss';
+import burgerStyle from '@/styles/components/navigation/Burger.module.scss';
+import Button from '../Button';
 import { useEffect, useState } from 'react';
 import MobileMenu from './MobileMenu';
 

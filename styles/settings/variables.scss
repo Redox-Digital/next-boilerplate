@@ -1,9 +1,11 @@
 * {
+  --true-white: #fff;
   --white: #fafafa;
   --dark: #232323;
-  --black: #050505;
+
   --gray: #d9d9d9;
   --dark-gray: #696969;
+  --black: #050505;
 
   --primary: #0059ff;
   --primary-dark: #202f60;
@@ -17,8 +19,16 @@
   --accent-dark: #9b2424;
   --accent-muted: #ff6666;
 
+  --danger: #d33232;
+  --warning: #d38932;
+  --info: #327cd3;
+  --success: #23ad29;
+
   --shadow-hover: 0px 2px 4px rgba(0, 0, 0, 0.25);
   --shadow-clicked: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+  --shadow-img: 0px 36px 20px -20px rgba(62, 85, 65, 0.25);
+  --shadow-card: 0px 12px 16px -20px rgba(62, 85, 65, 0.15);
+  --shadow-card-sm: 0px 4px 12px 0px rgba(51, 67, 54, 0.1);
 
   --fs-h1: 60px;
   --fs-h2: 42px;
@@ -32,18 +42,23 @@
 
   --margin: 15px;
   --padding: 10px;
-  --vert-spacing: 50px;
-  --title-surtitle-space: 10px;
-  --title-text-space: 30px;
 
   --sct-vert-margin: 100px;
+  --subsct-vert-margin: 75px;
   --sct-horiz-margin: 15px;
 
+  --vert-spacing: 50px;
+  --horiz-spacing: var(--margin);
+  --title-text-space: 25px;
+  --title-surtitle-space: 10px;
+
   --navbar-height: 80px;
+
   --max-block-width: 100%;
   --max-container-width: 1200px;
 
   --large-content-width: 100%;
+  --xl-content-width: 1600px;
   --gallery-img-height: 500px;
 }
 

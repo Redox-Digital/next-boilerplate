@@ -1,4 +1,4 @@
-import ImageGallery from './ImageGallery';
+import ImageGallery from '../content/ImageGallery';
 import Image from 'next/image';
 import style from '@/styles/components/GalleryAPI.module.scss';
 import btn from '@/styles/components/Button.module.scss';

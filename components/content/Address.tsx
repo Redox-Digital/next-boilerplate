@@ -1,4 +1,4 @@
-import style from '@/styles/components/Address.module.scss';
+import style from '@/styles/components/content/Address.module.scss';
 import Link from 'next/link';
 
 export default function Address() {

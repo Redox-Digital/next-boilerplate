@@ -1,12 +1,12 @@
 import styles from '@/styles/layouts/Home.module.scss';
 import Head from 'next/head';
-import Hero from '@/components/Hero';
-import TextImageSection from '@/components/TextImageSection';
+import Hero from '@/components/layouts/Hero';
+import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/Button';
 import Script from 'next/script';
-import ContactCTA from '@/components/ContactCTA';
-import ContactForm from '@/components/ContactForm';
-import Map from '@/components/Map';
+import ContactCTA from '@/components/content/ContactCTA';
+import ContactForm from '@/components/content/ContactForm';
+import Map from '@/components/content/Map';
 
 const structuredData = {
   '@context': 'https://schema.org/',
@@ -59,7 +59,7 @@ export default function Home() {
       <main className="home">
         <TextImageSection
           title={'Section Title'}
-          surtitle={"Section's surtitle"}
+          surtitle={"Text-Image Section's surtitle"}
           imgPath="./layouts/placeholder2.jpg"
         >
           <>
@@ -72,9 +72,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button ariaLabel="Accéder à la page d'À propos" to={'/about'}>
-              Read more
-            </Button>
+            <Button to={'/about'}>Read more</Button>
           </>
         </TextImageSection>
 
@@ -82,7 +80,7 @@ export default function Home() {
 
         <TextImageSection
           title={'Section Title'}
-          surtitle={"Section's surtitle"}
+          surtitle={"Text-Image Section's surtitle"}
           imgPath="./layouts/placeholder2.jpg"
           light
         >
@@ -96,9 +94,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button ariaLabel="Accéder à la page d'À propos" to={'/about'}>
-              Read more
-            </Button>
+            <Button to={'/about'}>Read more</Button>
           </>
         </TextImageSection>
 

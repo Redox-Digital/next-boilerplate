@@ -10,6 +10,7 @@ type Props = {
   addClass?: string;
   blank?: boolean;
   ariaLabel?: string;
+  onClick?: () => void;
   children: string;
 };
 
@@ -42,16 +43,6 @@ const getVariation = (param: string | undefined) => {
   }
 };
 
-/**
- *
- * @param to : URL
- * @param size : undefined | "small" | "big";
- * @param variation : undefined | "secondary" | "black" | "outline"
- * @param addClass : undefined | string;
- * @param children: string, text on button;
- * @param blank : boolean
- * @returns
- */
 export default function Button({
   to,
   // type,
@@ -62,6 +53,7 @@ export default function Button({
   addClass,
   blank,
   ariaLabel,
+  onClick,
 }: Props) {
   return (
     <Link
@@ -69,6 +61,7 @@ export default function Button({
       className={`${style.btn} ${getSize(size)} ${getVariation(variation)} ${addClass}`}
       target={blank ? '_blank' : ''}
       aria-label={ariaLabel}
+      onClick={onClick}
     >
       {children}
       {icon ? <i className={icon}></i> : ''}

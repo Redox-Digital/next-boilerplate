@@ -1,11 +1,11 @@
-import style from '@/styles/components/MobileMenu.module.scss';
-import menu from '@/styles/components/Menu.module.scss';
-import burgerStyle from '@/styles/components/Burger.module.scss';
+import style from '@/styles/components/navigation/MobileMenu.module.scss';
+import menu from '@/styles/components/navigation/Menu.module.scss';
+import burgerStyle from '@/styles/components/navigation/Burger.module.scss';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Socials from './Socials';
-import Address from './Address';
+import Socials from '../content/Socials';
+import Address from '../content/Address';
 
 type Props = {
   open: boolean;

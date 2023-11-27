@@ -1,4 +1,4 @@
-import style from '@/styles/components/Map.module.scss';
+import style from '@/styles/components/content/Map.module.scss';
 
 type Props = {
   url: string;

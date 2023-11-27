@@ -3,8 +3,8 @@ import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
 import style from '@/styles/components/Footer.module.scss';
 import Button from './Button';
-import Address from './Address';
-import Socials from './Socials';
+import Address from './content/Address';
+import Socials from './content/Socials';
 
 export default function Footer() {
   return (
@@ -63,8 +63,16 @@ export default function Footer() {
         </div>
       </div>
       <div className={style.footerBottom}>
+        <small className="xs">
+          <Link
+            href={'/confidentialite'}
+            aria-label="Vers notre déclaration de protection des données"
+          >
+            Protection des données & mentions légales
+          </Link>
+        </small>
         <small>
-          &copy; 2023 Paris & Comtesse SA – Site web réalisé par{' '}
+          &copy; 2023 My Company Sàrl – Site web réalisé par{' '}
           <Link
             aria-label="Accéder au site de Redox Digital"
             href="https://redoxdigital.ch"
