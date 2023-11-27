@@ -13,6 +13,7 @@ const nextConfig = {
     ig: 'https://www.instagram.com/myaccount/',
     fb: 'https://www.facebook.com/myaccount',
     in: 'https://www.linkedin.com/company/myaccount',
+    igBearer: 'jOWWbKFAQ3RbCVlx98jmOLHnGjnTj0V0',
   },
 };
 

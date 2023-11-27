@@ -20,27 +20,49 @@ type IgRawSource = {
   timestamp: string;
 };
 
-type Props = {
-  token: string;
-};
-
-export default function InstagramGallery({ token }: Props) {
+export default function InstagramGallery() {
   const [iGimagesApi, setIGImages] = useState<IgImage[] | null>(null);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [token, setToken] = useState<string>('');
 
   const galleryLength = iGimagesApi?.length || 0;
   const paginationStep = 9;
 
   const [pagination, setPagination] = useState<number>(paginationStep);
 
-  useEffect(() => {
+  // Form the request for sending data to the server.
+  const options: RequestInit = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${process.env.igBearer || ''}`,
+    },
+  };
+
+  const getIgFeed = () => {
     try {
       setLoading(true);
-      // Fetching all Gallery objects
-      fetch(
-        `https://graph.instagram.com/me/media?fields=media_type,media_url,thumbnail_url,caption,timestamp&access_token=${token}`
-      )
-        .then((res) => res.json())
+      // Fetching IG token
+      fetch('https://cms.redoxdigital.ch/items/IgTokenMR/1', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.igBearer || ''}`,
+        },
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to get token');
+          }
+          return response.json();
+        })
+        .then((json) => json.data.token)
+        .then((token) =>
+          fetch(
+            `https://graph.instagram.com/me/media?fields=media_type,media_url,thumbnail_url,caption,timestamp&access_token=${token}`
+          )
+        )
+        .then((response) => response.json())
         .then((json) => {
           setIGImages(
             json.data.map((elt: IgRawSource) => ({
@@ -53,11 +75,20 @@ export default function InstagramGallery({ token }: Props) {
           );
           setLoading(false);
         });
+    } catch (error) {
+      setLoading(false);
+      console.warn('Error: ', error);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      getIgFeed();
     } catch (err) {
       console.warn(err);
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   const displayedElts = iGimagesApi;
 
