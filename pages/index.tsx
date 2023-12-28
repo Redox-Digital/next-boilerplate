@@ -12,7 +12,7 @@ import InstagramGallery from '@/components/layouts/InstagramGallery';
 const structuredData = {
   '@context': 'https://schema.org/',
   '@type': 'Organization',
-  'url': 'https://www.mydomain.ch',
+  'url': process.env.domain,
   'name': 'My Company',
   'address': {
     '@type': 'PostalAddress',
@@ -22,7 +22,7 @@ const structuredData = {
     'postalCode': '2000',
     'addressCountry': 'CH',
   },
-  'logo': 'https:///www.mydomain.com/logos/logoipsum.svg',
+  'logo': `${process.env.domain}/logos/logoipsum.svg`,
   'telephone': process.env.phone,
 };
 
