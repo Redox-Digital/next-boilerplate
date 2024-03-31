@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import css from '@/styles/components/content/InstagramImage.module.scss';
+import css from './InstagramImage.module.scss';
 
 type Props = {
   title: string;

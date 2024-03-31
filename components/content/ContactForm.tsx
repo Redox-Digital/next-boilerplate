@@ -1,6 +1,6 @@
-import style from '@/styles/components/content/ContactForm.module.scss';
-import inputStyle from '@/styles/components/Inputs.module.scss';
-import btn from '@/styles/components/Button.module.scss';
+import style from './ContactForm.module.scss';
+import inputStyle from '../inputs/Inputs.module.scss';
+import btn from '../navigation/Button.module.scss';
 import Link from 'next/link';
 import { FormEventHandler, RefObject, useState } from 'react';
 import TextInput from '../inputs/TextInput';

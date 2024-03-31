@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/components/Hero.module.scss';
+import css from './Hero.module.scss';
 import Link from 'next/link';
 import arrowDown from '/public/pictograms/arrow-down.svg';
 import logo from '/public/logos/logoipsum.svg';
@@ -27,22 +27,22 @@ const Hero = (props: Props) => {
   return (
     <>
       <header
-        className={`${style.hero} ${home ? style.hero__home : ''}`}
+        className={`${css.hero} ${home ? css.hero__home : ''}`}
         style={{ backgroundImage: `url(${source})` }}
       >
         {home && video}
-        <div className={style.hero__overlay} style={{ opacity: opacity || 0.5 }} />
-        <div className={style.hero__content}>
+        <div className={css.hero__overlay} style={{ opacity: opacity || 0.5 }} />
+        <div className={css.hero__content}>
           {home ? (
             <>
               <Image src={logo} alt={''} width="1200" priority />
               {/* Pour optimiser : https://beta.nextjs.org/docs/optimizing/lazy-loading#example-adding-a-custom-loading-component */}
             </>
           ) : (
-            <h1 className={style.title}>{title}</h1>
+            <h1 className={css.title}>{title}</h1>
           )}
 
-          <p className={style.subtitle}>{subtitle}</p>
+          <p className={css.subtitle}>{subtitle}</p>
           {home ? (
             <Link href="#intro" scroll={false} aria-hidden>
               <Image src={arrowDown} alt={''}></Image>

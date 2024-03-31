@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import style from '@/styles/components/Button.module.scss';
+import style from './Button.module.scss';
 
 type Props = {
   to: string;

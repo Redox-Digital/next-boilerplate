@@ -1,5 +1,5 @@
-import css from '@/styles/components/CookiesPopUp.module.scss';
-import btn from '@/styles/components/Button.module.scss';
+import css from './CookiesPopUp.module.scss';
+import btn from '../navigation/Button.module.scss';
 import Link from 'next/link';
 
 type Props = {

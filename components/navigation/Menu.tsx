@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
 import DropdownMenu from './DropdownMenu';
-import style from '@/styles/components/navigation/Menu.module.scss';
-import burgerStyle from '@/styles/components/navigation/Burger.module.scss';
-import Button from '../Button';
+import css from './Menu.module.scss';
+import burgerStyle from './Burger.module.scss';
+import Button from './Button';
 import { useEffect, useState } from 'react';
 import MobileMenu from './MobileMenu';
 
@@ -64,24 +64,24 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`${style.menu} ${navbar ? style.menu__scrolling : ''} ${
-          menuOpen ? style.menu__open : ''
-        } ${scrollingUp ? '' : style.menu__hidden}`}
+        className={`${css.menu} ${navbar ? css.menu__scrolling : ''} ${
+          menuOpen ? css.menu__open : ''
+        } ${scrollingUp ? '' : css.menu__hidden}`}
       >
-        <div className={style.mainMenu}>
-          <div className={style.mainMenu__container}>
-            <Link href="/" className={style.logo} aria-label="Accéder à la page d'accueil">
+        <div className={css.mainMenu}>
+          <div className={css.mainMenu__container}>
+            <Link href="/" className={css.logo} aria-label="Accéder à la page d'accueil">
               <Image src={logo} alt="" height={30} className="logo" />
             </Link>
 
-            <div className={style.menu__links}>
+            <div className={css.menu__links}>
               <Link href="/" aria-label="Accéder à la page d'accueil">
                 Home
               </Link>
               <Link
                 href="#"
                 scroll={false}
-                className={style.submenu}
+                className={css.submenu}
                 aria-label="Afficher nos services"
               >
                 Services

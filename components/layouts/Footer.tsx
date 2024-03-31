@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
-import style from '@/styles/components/Footer.module.scss';
-import Button from './Button';
-import Address from './content/Address';
-import Socials from './content/Socials';
+import style from './Footer.module.scss';
+import Button from '../navigation/Button';
+import Address from '../content/Address';
+import Socials from '../content/Socials';
 
 export default function Footer() {
   return (

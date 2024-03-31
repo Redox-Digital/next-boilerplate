@@ -1,7 +1,7 @@
 import ImageGallery from '../content/ImageGallery';
 import Image from 'next/image';
-import style from '@/styles/components/GalleryAPI.module.scss';
-import btn from '@/styles/components/Button.module.scss';
+import style from './GalleryAPI.module.scss';
+import btn from '../navigation/Button.module.scss';
 import { Suspense, useEffect, useState } from 'react';
 import arrowDown from '/public/pictograms/arrow-down.svg';
 

@@ -43,7 +43,7 @@ export default function InstagramGallery() {
     try {
       setLoading(true);
       // Fetching IG token
-      fetch('https://cms.redoxdigital.ch/items/IgTokenMR/1', {
+      fetch(`${process.env.api}/items/IgToken/1`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -52,11 +52,11 @@ export default function InstagramGallery() {
       })
         .then((response) => {
           if (!response.ok) {
-            throw new Error('Failed to get token');
+            console.warn('Failed to get token');
           }
           return response.json();
         })
-        .then((json) => json.data.token)
+        .then((json) => json?.data?.token || '')
         .then((token) =>
           fetch(
             `https://graph.instagram.com/me/media?fields=media_type,media_url,thumbnail_url,caption,timestamp&access_token=${token}`

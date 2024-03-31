@@ -1,5 +1,5 @@
-import style from '@/styles/components/content/ContactCTA.module.scss';
-import Button from '../Button';
+import style from './ContactCTA.module.scss';
+import Button from '../navigation/Button';
 
 export default function ContactCTA() {
   return (

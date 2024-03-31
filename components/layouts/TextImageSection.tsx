@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/components/TextImageSection.module.scss';
+import style from './TextImageSection.module.scss';
 import logo from '/public/logos/logoipsum.svg';
 
 type Props = {

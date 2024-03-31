@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import style from '@/styles/components/Gallery.module.scss';
+import style from './Gallery.module.scss';
 
 type Props = {
   id: number;

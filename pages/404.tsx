@@ -1,9 +1,9 @@
-import Button from '@/components/Button';
-import style from '@/styles/layouts/404.module.scss';
+import Button from '@/components/navigation/Button';
+import css from './404.module.scss';
 
 export default function NotFoundPage() {
   return (
-    <section className={`light ${style.notFoundPage}`}>
+    <section className={`light ${css.notFoundPage}`}>
       <div className="container">
         <h5>Erreur 404</h5>
         <h2>Page introuvable</h2>

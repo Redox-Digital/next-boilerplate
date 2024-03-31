@@ -1,5 +1,5 @@
 import Header from './navigation/Menu';
-import Footer from './Footer';
+import Footer from './layouts/Footer';
 
 type Props = {
   children: string | JSX.Element;

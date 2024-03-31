@@ -1,8 +1,8 @@
-import styles from '@/styles/layouts/Home.module.scss';
+import css from './Home.module.scss';
 import Head from 'next/head';
 import Hero from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
-import Button from '@/components/Button';
+import Button from '@/components/navigation/Button';
 import Script from 'next/script';
 import ContactCTA from '@/components/content/ContactCTA';
 import ContactForm from '@/components/content/ContactForm';
@@ -99,8 +99,7 @@ export default function Home() {
           </>
         </TextImageSection>
 
-        <InstagramGallery />
-
+        {/* <InstagramGallery /> */}
         <Map url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2721.920463044422!2d6.900426376694955!3d46.98289683083848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e89633cc35043%3A0x639791bb8e74ddf1!2sRedox%20Digital%20S%C3%A0rl!5e0!3m2!1sfr!2sch!4v1690360916650!5m2!1sfr!2sch" />
 
         <ContactForm />

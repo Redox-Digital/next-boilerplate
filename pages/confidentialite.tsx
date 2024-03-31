@@ -1,6 +1,6 @@
-import Button from '@/components/Button';
+import Button from '@/components/navigation/Button';
 import Hero from '@/components/layouts/Hero';
-import css from '@/styles/layouts/Confidentialite.module.scss';
+import css from './Confidentialite.module.scss';
 import Head from 'next/head';
 
 type Props = {

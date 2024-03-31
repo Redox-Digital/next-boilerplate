@@ -1,6 +1,6 @@
-import style from '@/styles/components/navigation/MobileMenu.module.scss';
-import menu from '@/styles/components/navigation/Menu.module.scss';
-import burgerStyle from '@/styles/components/navigation/Burger.module.scss';
+import style from './MobileMenu.module.scss';
+import menu from './Menu.module.scss';
+import burgerStyle from './Burger.module.scss';
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
