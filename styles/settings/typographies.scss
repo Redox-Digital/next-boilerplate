@@ -40,7 +40,6 @@ h6 {
 h1 {
   font-weight: 500;
   font-size: var(--fs-h1);
-  // text-transform: uppercase;
   line-height: 1em;
   letter-spacing: 0.01em;
 }
@@ -77,7 +76,6 @@ h5 {
   font-size: var(--fs-h5);
   line-height: auto;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 h6 {
@@ -85,7 +83,6 @@ h6 {
   font-size: var(--fs-h6);
   letter-spacing: 0.07em;
   line-height: auto;
-  text-transform: uppercase;
 }
 
 a {

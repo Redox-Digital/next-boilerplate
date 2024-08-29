@@ -1,5 +1,6 @@
 .footer {
   border-top: 4px solid var(--primary-dark);
+  background-color: var(--dark);
 
   &__submenu > a {
     font-size: var(--fs-sm);
@@ -70,7 +71,6 @@
         flex-direction: column;
 
         font-size: var(--fs-h5);
-        text-transform: uppercase;
         letter-spacing: 0.08em;
 
         > a,

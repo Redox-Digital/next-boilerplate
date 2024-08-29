@@ -1,5 +1,7 @@
 html {
-  background-color: var(--dark);
+  background-color: var(--white);
+  color: var(--black);
+
   scroll-behavior: smooth;
   font-family: var(--jost-font);
 }
@@ -22,6 +24,7 @@ abbr[title] {
 section {
   padding: var(--sct-vert-margin) var(--sct-horiz-margin);
   display: flex;
+  color: var(--black);
 
   &.dark {
     background-color: var(--dark);
@@ -30,7 +33,6 @@ section {
 
   &.light {
     background-color: var(--white);
-    color: var(--black);
   }
 }
 

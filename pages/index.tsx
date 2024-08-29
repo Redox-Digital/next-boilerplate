@@ -3,11 +3,9 @@ import Head from 'next/head';
 import Hero from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
-import Script from 'next/script';
 import ContactCTA from '@/components/content/ContactCTA';
 import ContactForm from '@/components/content/ContactForm';
 import Map from '@/components/content/Map';
-import InstagramGallery from '@/components/layouts/InstagramGallery';
 
 const structuredData = {
   '@context': 'https://schema.org/',
@@ -58,11 +56,7 @@ export default function Home() {
         source="./layouts/placeholder1.jpg"
       />
       <main className="home">
-        <TextImageSection
-          title={'Section Title'}
-          surtitle={"Text-Image Section's surtitle"}
-          imgPath="./layouts/placeholder2.jpg"
-        >
+        <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg">
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
@@ -79,12 +73,7 @@ export default function Home() {
 
         <ContactCTA />
 
-        <TextImageSection
-          title={'Section Title'}
-          surtitle={"Text-Image Section's surtitle"}
-          imgPath="./layouts/placeholder2.jpg"
-          light
-        >
+        <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg" dark>
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?

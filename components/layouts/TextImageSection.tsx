@@ -4,29 +4,27 @@ import logo from '/public/logos/logoipsum.svg';
 
 type Props = {
   title: string;
-  surtitle: string;
   children: string | JSX.Element;
   imgPath: string;
-  light?: boolean;
+  dark?: boolean;
 };
 
-export default function TextImageSection({ title, surtitle, children, light, imgPath }: Props) {
+export default function TextImageSection({ title, children, dark, imgPath }: Props) {
   return (
-    <section className={`${style.txtImgSection} ${light ? 'light' : ''}`}>
+    <section className={`${style.txtImgSection} ${dark ? 'dark' : ''}`}>
       <div className="container">
-        <div className={style.txtImgSection__surtitle}>
-          <h5 className={light ? 'color-dark' : ''}>{surtitle}</h5>
-        </div>
-        <div
+        <Image
           className={style.txtImgSection__image}
-          style={{ backgroundImage: `url(${imgPath})` }}
-        ></div>
+          src={imgPath}
+          alt={''}
+          width={1000}
+          height={1000}
+        />
         <div className={style.txtImgSection__content}>
-          <h5 className={light ? 'color-dark' : ''}>{surtitle}</h5>
           {title === 'logo' ? (
             <Image src={logo} alt={''} width="900" height="300" />
           ) : (
-            <h2 className={`all-caps ${light ? 'color-primary' : ''}`}>{title}</h2>
+            <h2 className={`all-caps`}>{title}</h2>
           )}
           <div className={style.txtImgSection__texts}>{children}</div>
         </div>

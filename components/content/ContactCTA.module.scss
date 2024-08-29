@@ -6,12 +6,13 @@
   background-size: cover;
   background-position: center;
   justify-content: center;
-  align-items: flex-end;
+  // align-items: flex-end;
   position: relative;
 
   > .container {
-    min-width: 100%;
     width: 100%;
+    max-width: var(--max-container-width);
+    margin-inline: auto;
     z-index: 1;
 
     > a {
@@ -55,7 +56,7 @@
 @media screen and (min-width: 768px) {
   .contactCTA > .container {
     min-width: 640px;
-    width: 50%;
+    // width: 50%;
   }
 
   .contactCTA__overlay {

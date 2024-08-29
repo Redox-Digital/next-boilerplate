@@ -33,14 +33,7 @@ const Hero = (props: Props) => {
         {home && video}
         <div className={css.hero__overlay} style={{ opacity: opacity || 0.5 }} />
         <div className={css.hero__content}>
-          {home ? (
-            <>
-              <Image src={logo} alt={''} width="1200" priority />
-              {/* Pour optimiser : https://beta.nextjs.org/docs/optimizing/lazy-loading#example-adding-a-custom-loading-component */}
-            </>
-          ) : (
-            <h1 className={css.title}>{title}</h1>
-          )}
+          <h1 className={css.title}>{title}</h1>
 
           <p className={css.subtitle}>{subtitle}</p>
           {home ? (
