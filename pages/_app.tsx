@@ -11,7 +11,7 @@ import localFont from 'next/font/local';
 import { Jost } from 'next/font/google';
 
 const jost = Jost({ subsets: ['latin'] });
-const jakarta = localFont({ src: './fonts/PlusJakartaSans-VariableFont_wght.ttf' });
+const jakarta = localFont({ src: '../public/fonts/jakarta/PlusJakartaSans-VariableFont_wght.ttf' });
 
 export default function App({ Component, pageProps }: AppProps) {
   // const gKey = 'G-K20DW8RS8P';

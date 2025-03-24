@@ -1,4 +1,4 @@
-import Header from './navigation/Menu';
+import Header from './navigation/Header';
 import Footer from './layouts/Footer';
 
 type Props = {

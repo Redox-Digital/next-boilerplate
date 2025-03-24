@@ -7,7 +7,7 @@
   > textarea,
   > select {
     width: 100%;
-    padding: var(--padding);
+    padding: var(--sm);
     background: var(--white);
     border: 1px solid var(--gray);
     font-size: var(--fs-sm);
@@ -29,8 +29,8 @@
 
 @media screen and (min-width: 768px) {
   .input {
-    width: calc((100% - var(--margin)) / 2);
-    margin-bottom: var(--margin);
+    width: calc((100% - var(--md)) / 2);
+    margin-bottom: var(--md);
   }
 
   .textarea {

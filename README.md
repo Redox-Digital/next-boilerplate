@@ -14,7 +14,7 @@ The project is organized in the following way:
    Contains all the pages of the website.
 
 4. Components
-   Contains all the components of the project. 
+   Contains all the components of the project.
 
 5. Styles
    Contains all SASS styling files. The folder's organization is inspired by [ITCSS](https://developer.helpscout.com/seed/glossary/itcss/).
@@ -54,7 +54,114 @@ References:
 - https://seesparkbox.com/foundry/semantic_commit_messages
 - http://karma-runner.github.io/1.0/dev/git-commit-msg.html
 
-## Getting Started
+---
+
+# 📦 Composants réutilisables et leurs variations
+
+Développement en cours.
+
+## 🔗 Navigation & Layout
+
+### [ ] `Header.tsx` (barre de navigation)
+
+- **Positionnement** : Fixe en haut / Sticky au scroll / Transparente puis colorée au scroll
+- **Style de menu** : Classique (horizontal) / Hamburger menu (mobile) / Sidebar (vertical)
+- **Logo placement** : Gauche / Centre / Dans le menu
+- **Navigation** : Menu avec sous-menus / Mega-menu / Menu minimaliste
+
+### [ ] `Footer.tsx` (pied de page)
+
+- **Structure** : 2 colonnes / 3 colonnes / Centré
+- **Liens** : Icônes sociales / Menu secondaire / Newsletter
+- **Affichage** : Clair / Sombre / Minimaliste
+
+## 🖼 Sections
+
+### [ ] `Hero.tsx` (bandeau d’intro)
+
+- **Médias** : Image fixe / Vidéo en fond / Diaporama
+- **Texte** : Centré / À gauche / À droite
+- **Bouton CTA** : Simple / Double (ex: "Voir plus" + "Contact")
+- **Effets** : Parallax / Zoom au scroll / Flou dynamique
+
+### [ ] `FeatureSection.tsx` (présentation de points clés)
+
+- **Disposition** : Liste verticale / Grille 2 ou 3 colonnes / Icônes + texte
+- **Affichage des icônes** : Cercle coloré / Outline / Sans icône
+- **Style** : Fond coloré / Bords arrondis / Contenu encadré
+
+### [ ] `Testimonial.tsx` (témoignages)
+
+- **Affichage** : Slider / Grid / Une seule citation
+- **Format** : Avec photo / Sans photo / Avatar circulaire
+- **Style de citation** : Texte seul / Avec guillemets stylisés / Bloc coloré
+
+### [ ] `CallToAction.tsx` (bandeau avec bouton)
+
+- **Disposition** : Centré / Image à gauche, texte à droite / Full-width
+- **Arrière-plan** : Uni / Dégradé / Image floue
+- **Boutons** : Un seul CTA / Deux CTAs / Bouton + lien secondaire
+
+## 🗂 Listes & Cartes
+
+### [ ] `Card.tsx` (affichage d’un élément)
+
+- **Disposition** : Image en haut / Image à gauche / Full-width
+- **Effets** : Ombre au hover / Légère rotation / Zoom sur l’image
+- **Bouton** : Avec / Sans / Texte en lien
+
+### [ ] `ProjectCard.tsx` (pour portfolio)
+
+- **Affichage** : Image seule / Image + titre + catégorie / Avec un extrait de texte
+- **Animation** : Overlay au hover / Zoom / Diaporama au survol
+
+### [ ] `BlogCard.tsx` (affichage d’article)
+
+- **Format** : Liste en colonne / Grille 2 ou 3 colonnes / Carte large
+- **Éléments affichés** : Date / Catégorie / Auteur / Nombre de commentaires
+- **Mise en page** : Titre seul / Titre + extrait / Image + titre
+
+## ⚡ Interactivité
+
+### [ ] `Accordion.tsx` (FAQ, contenu déroulant)
+
+- **Icônes d’expansion** : `+ / -` / `▶ / ▼`
+- **Animation** : Slide / Fade-in / Expansion immédiate
+- **Mode** : Un seul élément ouvert à la fois / Plusieurs ouverts simultanément
+
+### [ ] `Tabs.tsx` (onglets)
+
+- **Position des onglets** : Haut / Gauche (vertical) / En bas
+- **Style** : Contours arrondis / Soulignement au hover / Cartes
+
+### [ ] `Modal.tsx` (fenêtre pop-up)
+
+- **Fond** : Clair / Sombre / Semi-transparent
+- **Fermeture** : Bouton / Clic en dehors / Échappement clavier
+- **Animation** : Slide-in / Fade-in / Zoom-in
+
+### [ ] `Carousel.tsx` (slider d’images)
+
+- **Navigation** : Flèches / Points / Swipe mobile
+- **Défilement** : Auto / Manuel / Boucle infinie
+- **Format** : Images plein écran / Cartes empilées / Aperçus latéraux
+
+## 📞 Formulaires
+
+### [ ] `ContactForm.tsx` (formulaire de contact)
+
+- **Champs** : Nom / Email / Message / Sujet en option
+- **Validation** : En live / Après soumission
+- **Affichage** : Simple colonne / 2 colonnes
+
+### [ ] `NewsletterForm.tsx` (inscription newsletter)
+
+- **Affichage** : Champ email + bouton / Popup / Barre fixe
+- **Design** : Carré / Rond / Bordure soulignée
+
+---
+
+# Getting Started
 
 First, run the development server:
 
@@ -67,29 +174,6 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Export to static
 
@@ -112,4 +196,3 @@ pnpm build
 ```
 
 The static files can be found in the `out` folder and directly uploaded to your web host.
-

@@ -7,8 +7,7 @@
  ********************************/
 
 // Normalize :  CSS resets and normalizing rules to create a foundation for your styles.
-@import './normalize/normalize.scss';
-// @import './normalize/bootstrap-grid.css';
+@import './settings/normalize.scss';
 
 // Settings :  Variable configurations for things like colors, fonts, sizes, etc…
 @import './settings/global.scss';

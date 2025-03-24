@@ -1,70 +1,52 @@
 import Link from 'next/link';
-import style from './Button.module.scss';
+import css from './Button.module.scss';
+import Image from 'next/image';
 
 type Props = {
-  to: string;
-  size?: undefined | 'small' | 'big';
-  // type?: undefined | "submit";
-  variation?: undefined | 'secondary' | 'black' | 'outline';
-  icon?: undefined | string;
-  addClass?: string;
+  href?: string;
+  outline?: boolean;
+  small?: boolean;
+  darkBg?: boolean;
+  title?: string;
+  className?: string;
   blank?: boolean;
-  ariaLabel?: string;
   onClick?: () => void;
-  children: string;
-};
-
-const getSize = (param: string | undefined) => {
-  switch (param) {
-    case 'small':
-      return style.btn__small;
-
-    case 'big':
-      return style.btn__big;
-
-    default:
-      return '';
-  }
-};
-
-const getVariation = (param: string | undefined) => {
-  switch (param) {
-    case 'secondary':
-      return style.btn__secondary;
-
-    case 'black':
-      return style.btn__black;
-
-    case 'outline':
-      return style.btn__outline;
-
-    default:
-      return '';
-  }
+  children?: string | React.ReactNode;
 };
 
 export default function Button({
-  to,
-  // type,
-  size,
+  href,
   children,
-  icon,
-  variation,
-  addClass,
+  outline,
+  darkBg,
+  className,
   blank,
-  ariaLabel,
+  title,
+  small,
   onClick,
 }: Props) {
-  return (
+  return href ? (
     <Link
-      href={to}
-      className={`${style.btn} ${getSize(size)} ${getVariation(variation)} ${addClass}`}
+      href={href}
+      className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
+        darkBg && css.darkBg
+      } ${className}`}
       target={blank ? '_blank' : ''}
-      aria-label={ariaLabel}
       onClick={onClick}
+      title={title}
     >
       {children}
-      {icon ? <i className={icon}></i> : ''}
     </Link>
+  ) : (
+    <button
+      type="button"
+      className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
+        darkBg && css.darkBg
+      } ${className}`}
+      onClick={onClick ? onClick : () => null}
+      title={title}
+    >
+      {children}
+    </button>
   );
 }

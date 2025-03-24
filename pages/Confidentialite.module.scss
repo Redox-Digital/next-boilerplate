@@ -1,29 +1,30 @@
 .lpd {
   > section {
-    padding-block: 50px;
+    padding-block: var(--lg);
+    max-width: var(--max-paragraph-width);
 
     > a:last-of-type {
-      margin-top: var(--margin);
+      margin-top: var(--md);
     }
   }
 
   hr {
-    max-width: calc(100% - 2 * var(--sct-horiz-margin));
+    max-width: var(--max-paragraph-width);
   }
 
   h2,
   h3,
   h4 {
-    margin-bottom: var(--title-text-space);
+    margin-bottom: var(--md);
   }
 
   h2 {
-    margin-top: var(--title-text-space);
+    margin-top: var(--md);
   }
 
   h3,
   h4 {
-    margin-top: var(--margin);
+    margin-top: var(--md);
   }
 
   h2 + h3,
@@ -32,7 +33,7 @@
   }
 
   h5 {
-    margin-block: var(--margin);
+    margin-block: var(--md);
   }
 
   a:hover {

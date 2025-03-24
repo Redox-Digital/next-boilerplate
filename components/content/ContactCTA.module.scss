@@ -1,8 +1,8 @@
 .contactCTA {
   height: 400px;
-  padding: var(--margin);
+  padding: var(--md);
   flex-direction: column;
-  gap: var(--padding);
+  gap: var(--sm);
   background-size: cover;
   background-position: center;
   justify-content: center;
@@ -16,7 +16,7 @@
     z-index: 1;
 
     > a {
-      margin-top: var(--padding);
+      margin-top: var(--sm);
     }
   }
 
@@ -66,7 +66,7 @@
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 900px) {
   .contactCTA__overlay {
     --angle: 0deg;
     --end: 80%;

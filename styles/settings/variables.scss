@@ -26,66 +26,59 @@
 
   --shadow-hover: 0px 2px 4px rgba(0, 0, 0, 0.25);
   --shadow-clicked: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
-  --shadow-img: 0px 36px 20px -20px rgba(62, 85, 65, 0.25);
   --shadow-card: 0px 12px 16px -20px rgba(62, 85, 65, 0.15);
-  --shadow-card-sm: 0px 4px 12px 0px rgba(51, 67, 54, 0.1);
 
+  /* Sizes */
+  --xs: 6px;
+  --sm: 12px;
+  --md: 24px;
+  --lg: 48px;
+  --xl: 96px;
+
+  /* Font sizes */
   --fs-h1: 60px;
   --fs-h2: 42px;
-  --fs-h2-caps: 42px;
   --fs-h3: 36px;
   --fs-h4: 24px;
   --fs-h5: 18px;
   --fs-h6: 14px;
   --fs-p: 16px;
   --fs-sm: 12px;
+  --fs-btn: var(--fs-p);
 
-  --margin: 15px;
-  --padding: 10px;
+  /* Fonts */
+  --body-font: var(--jost-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --heading-font: var(--jakarta-font), var(--body-font);
+  --special-font: var(--body-font);
 
+  /* Spacings */
   --sct-vert-margin: 100px;
   --subsct-vert-margin: 75px;
   --sct-horiz-margin: 15px;
-
-  --vert-spacing: 50px;
-  --horiz-spacing: var(--margin);
-  --title-text-space: 25px;
-  --title-surtitle-space: 10px;
+  --sct-default-margins: var(--sct-vert-margin) var(--sct-horiz-margin);
 
   --navbar-height: 80px;
 
+  --max-paragraph-width: 720px;
   --max-block-width: 100%;
   --max-container-width: 1200px;
-
-  --large-content-width: 100%;
-  --xl-content-width: 1600px;
-  --gallery-img-height: 500px;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 900px) {
   * {
     --fs-h1: 120px;
     --fs-h2: 80px;
-    --fs-h2-caps: 100px;
     --fs-h3: 46px;
     --fs-h4: 32px;
     --fs-h5: 24px;
     --fs-h6: 16px;
     --fs-p: 18px;
     --fs-sm: 14px;
+  }
+}
 
-    --margin: 20px;
-    --padding: 15px;
-    --title-surtitle-space: 15px;
-    --title-text-space: 30px;
-    --vert-spacing: 75px;
-
-    --sct-vert-margin: 150px;
-    --sct-horiz-margin: 70px;
-
-    --navbar-height: 140px;
-    --max-block-width: 1200px;
-
-    --large-content-width: 1200px;
+@media screen and (min-width: 1200px) {
+  * {
   }
 }

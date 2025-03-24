@@ -1,7 +1,11 @@
 .burger {
+  --w: 30px;
+  --h: 24px;
+  --b: 4px; // "border" width
+
   z-index: 12;
-  width: 30px;
-  height: 24px;
+  width: var(--w);
+  height: var(--h);
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -19,7 +23,7 @@
   > span {
     display: block;
     position: absolute;
-    height: 4px;
+    height: var(--b);
     width: 100%;
     background: var(--primary);
     opacity: 1;
@@ -42,7 +46,7 @@
     }
 
     &:nth-child(2) {
-      top: 12px;
+      top: calc(var(--h) / 2);
       -webkit-transform-origin: left center;
       -moz-transform-origin: left center;
       -o-transform-origin: left center;
@@ -50,7 +54,7 @@
     }
 
     &:nth-child(3) {
-      top: 24px;
+      top: var(--h);
       -webkit-transform-origin: left center;
       -moz-transform-origin: left center;
       -o-transform-origin: left center;
@@ -58,7 +62,7 @@
     }
   }
 
-  &__closed {
+  &.closed {
     > span {
       &:nth-child(1) {
         -webkit-transform: rotate(45deg);
@@ -66,7 +70,7 @@
         -o-transform: rotate(45deg);
         transform: rotate(45deg);
         top: 0px;
-        left: 4px;
+        left: var(--b);
       }
 
       &:nth-child(2) {
@@ -79,14 +83,14 @@
         -moz-transform: rotate(-45deg);
         -o-transform: rotate(-45deg);
         transform: rotate(-45deg);
-        top: 21px;
-        left: 4px;
+        top: calc(var(--h) - var(--b) + 1px);
+        left: var(--b);
       }
     }
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 900px) {
   .burger {
     display: none;
   }

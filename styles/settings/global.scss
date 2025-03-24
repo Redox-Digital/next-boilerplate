@@ -3,7 +3,7 @@ html {
   color: var(--black);
 
   scroll-behavior: smooth;
-  font-family: var(--jost-font);
+  font-family: var(--body-font);
 }
 
 body {
@@ -22,18 +22,8 @@ abbr[title] {
 }
 
 section {
-  padding: var(--sct-vert-margin) var(--sct-horiz-margin);
+  padding: var(--sct-default-margins);
   display: flex;
-  color: var(--black);
-
-  &.dark {
-    background-color: var(--dark);
-    color: var(--white);
-  }
-
-  &.light {
-    background-color: var(--white);
-  }
 }
 
 .container {

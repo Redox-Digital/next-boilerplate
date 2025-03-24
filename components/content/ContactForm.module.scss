@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--margin) * 2);
+    gap: calc(var(--md) * 2);
   }
 }
 
@@ -29,7 +29,7 @@
 .form__bottom {
   display: flex;
   flex-direction: column;
-  gap: var(--margin);
+  gap: var(--md);
 }
 
 .status {
@@ -58,6 +58,6 @@
   .formSection form {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: var(--margin);
+    gap: var(--md);
   }
 }
