@@ -9,7 +9,7 @@ body {
 
 p {
   line-height: 1.3em;
-  letter-spacing: 0.01em;
+  letter-spacing: 0em;
 
   &:first-of-type {
     margin-top: 0px;
@@ -24,7 +24,7 @@ small {
   font-weight: 500;
   font-size: var(--fs-sm);
   line-height: 1.3em;
-  letter-spacing: 0.01em;
+  letter-spacing: 0em;
 }
 
 h1,
@@ -41,41 +41,41 @@ h1 {
   font-weight: 500;
   font-size: var(--fs-h1);
   line-height: 1em;
-  letter-spacing: 0.01em;
+  letter-spacing: 0em;
 }
 
 h2 {
   font-weight: 700;
   font-size: var(--fs-h2);
   line-height: 1em;
-  letter-spacing: 0.02em;
+  letter-spacing: 0em;
 }
 
 h3 {
   font-weight: 700;
   font-size: var(--fs-h3);
   line-height: auto;
-  letter-spacing: 0.03em;
+  letter-spacing: 0em;
 }
 
 h4 {
   font-weight: 700;
   font-size: var(--fs-h4);
   line-height: auto;
-  letter-spacing: 0.03em;
+  letter-spacing: 0em;
 }
 
 h5 {
   font-weight: 500;
   font-size: var(--fs-h5);
   line-height: auto;
-  letter-spacing: 0.08em;
+  letter-spacing: 0em;
 }
 
 h6 {
   font-weight: 400;
   font-size: var(--fs-h6);
-  letter-spacing: 0.07em;
+  letter-spacing: 0em;
   line-height: auto;
 }
 
@@ -95,6 +95,6 @@ a {
 }
 
 .all-caps {
-  letter-spacing: 0.03em;
+  letter-spacing: 0em;
   text-transform: uppercase;
 }

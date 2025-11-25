@@ -36,20 +36,21 @@
   --xl: 96px;
 
   /* Font sizes */
-  --fs-h1: 60px;
-  --fs-h2: 42px;
-  --fs-h3: 36px;
-  --fs-h4: 24px;
-  --fs-h5: 18px;
+  /* ratio : 1.25 */
+  --fs-h1: 49px;
+  --fs-h2: 39px;
+  --fs-h3: 31px;
+  --fs-h4: 25px;
+  --fs-h5: 20px;
   --fs-h6: 14px;
   --fs-p: 16px;
-  --fs-sm: 12px;
+  --fs-sm: 13px;
   --fs-btn: var(--fs-p);
 
   /* Fonts */
-  --body-font: var(--jost-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  --body-font: var(--inter-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --heading-font: var(--jakarta-font), var(--body-font);
+  --heading-font: var(--body-font);
   --special-font: var(--body-font);
 
   /* Spacings */
@@ -67,12 +68,13 @@
 
 @media screen and (min-width: 900px) {
   * {
-    --fs-h1: 120px;
-    --fs-h2: 80px;
-    --fs-h3: 46px;
+    /* ratio : 1.333 */
+    --fs-h1: 76px;
+    --fs-h2: 57px;
+    --fs-h3: 43px;
     --fs-h4: 32px;
     --fs-h5: 24px;
-    --fs-h6: 16px;
+    --fs-h6: 14px;
     --fs-p: 18px;
     --fs-sm: 14px;
   }

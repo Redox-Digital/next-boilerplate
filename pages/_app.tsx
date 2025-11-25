@@ -8,9 +8,10 @@ import GAnalytics from '@/components/helpers/GAnalytics';
 import CookiesPopUp from '@/components/helpers/CookiesPopUp';
 
 import localFont from 'next/font/local';
-import { Jost } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const jost = Jost({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
+// Example of local font usage
 const jakarta = localFont({ src: '../public/fonts/jakarta/PlusJakartaSans-VariableFont_wght.ttf' });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -38,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>
         {`
           :root {
-            --jost-font: ${jost.style.fontFamily};
+            --inter-font: ${inter.style.fontFamily};
             --jakarta-font: ${jakarta.style.fontFamily};
           }
         `}
