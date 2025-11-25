@@ -6,48 +6,29 @@ import Button from '@/components/navigation/Button';
 import ContactCTA from '@/components/content/ContactCTA';
 import ContactForm from '@/components/content/ContactForm';
 import Map from '@/components/content/Map';
-
-const structuredData = {
-  '@context': 'https://schema.org/',
-  '@type': 'Organization',
-  'url': process.env.domain,
-  'name': 'My Company',
-  'address': {
-    '@type': 'PostalAddress',
-    'streetAddress': 'Address Line 1',
-    'addressLocality': 'City',
-    'addressRegion': 'NE',
-    'postalCode': '2000',
-    'addressCountry': 'CH',
-  },
-  'logo': `${process.env.domain}/logos/logoipsum.svg`,
-  'telephone': process.env.phone,
-};
+import Metadata from '@/components/content/Metadata';
+import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 
 export default function Home() {
+  const structuredData = generateStructuredData({
+    page: {
+      url: 'https://redoxdigital.ch',
+      title: 'Redox Digital | Marketing digital, solutions web sur-mesure, création de contenu',
+    },
+    services: [
+      {
+        serviceType: 'Stratégie & marketing digital',
+        description:
+          'Gestion stratégique et créative de la présence des marques sur les réseaux sociaux.',
+      },
+    ],
+  });
+
   return (
     <>
-      <Head>
-        <title>My Company | Welcome</title>
-
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <meta name="author" content="Redox Digital" />
-
-        <meta property="og:title" content="" />
-        <meta property="og:description" content="" />
-        <meta property="og:image" content="https://mydomain.com/socials/social_thumbnail.png" />
-        <meta property="og:url" content="https://mydomain.com" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="" />
-        <meta name="twitter:description" content="" />
-        <meta name="twitter:image" content="https://mydomain.com/socials/social_thumbnail.png" />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
+      <Metadata>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
+      </Metadata>
 
       <Hero
         title="My Company"
@@ -67,7 +48,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button to={'/about'}>Read more</Button>
+            <Button href={'/about'}>Read more</Button>
           </>
         </TextImageSection>
 
@@ -84,7 +65,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button to={'/about'}>Read more</Button>
+            <Button href={'/about'}>Read more</Button>
           </>
         </TextImageSection>
 
