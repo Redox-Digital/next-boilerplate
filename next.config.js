@@ -7,6 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   env: {
+    // No ending slash
     domain: 'https://mydomain.com',
     api: 'https://mydomain.com/api',
     phone: '+41 00 000 00 00',
