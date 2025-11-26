@@ -4,7 +4,7 @@ import Map from '@/components/content/Map';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import { TextHero } from '@/components/layouts/Hero';
 
-export default function About() {
+export default function Contact() {
   const [pageTitle, pageDesc] = [
     'Rendez-nous visite',
     'Découvrez notre emplacement et contactez-nous pour toute question.',

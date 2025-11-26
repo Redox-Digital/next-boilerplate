@@ -20,15 +20,15 @@ export const mainNavLinks: NavLinkType[] = [
     label: 'Services',
     subLinks: [
       {
-        url: '/services/subservice-1',
+        url: '/services#subservice-1',
         label: 'Subservice #1',
       },
       {
-        url: '/services/subservice-2',
+        url: '/services#subservice-2',
         label: 'Subservice #2',
       },
       {
-        url: '/services/subservice-3',
+        url: '/services#subservice-3',
         label: 'Subservice #3',
       },
     ],

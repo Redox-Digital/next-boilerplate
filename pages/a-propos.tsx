@@ -1,6 +1,4 @@
 import Metadata from '@/components/content/Metadata';
-import ContactForm from '@/components/forms/ContactForm';
-import Map from '@/components/content/Map';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import { TextHero } from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
@@ -30,7 +28,7 @@ export default function About() {
       </TextHero>
 
       <main>
-        <TextImageSection title={'Section Title'} imgPath="/layouts/placeholder2.jpg" dark>
+        <TextImageSection title={'Section Title'} imgPath="/layouts/placeholder2.jpg">
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
