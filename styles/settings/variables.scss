@@ -36,6 +36,18 @@
   --xl: 96px;
 
   /* Font sizes */
+  --fs-p: 17px;
+  --fs-sm: 14px;
+  --fs-btn: var(--fs-p);
+
+  --fs-h1: 42px;
+  --fs-h2: 33px;
+  --fs-h3: 27px;
+  --fs-h4: 21px;
+  --fs-h5: var(--fs-p);
+  --fs-h6: var(--fs-sm);
+
+  /* Using a modular scale with a ratio of 1.25 (perfect fourth) 
   --base-font-size: 16px;
   --ratio: 1.25;
 
@@ -47,9 +59,9 @@
   --fs-h2: calc(var(--base-font-size) * pow(var(--ratio), 4));
   --fs-h3: calc(var(--base-font-size) * pow(var(--ratio), 3));
   --fs-h4: calc(var(--base-font-size) * pow(var(--ratio), 2));
-  --fs-h4: calc(var(--base-font-size) * pow(var(--ratio), 1));
-
+  --fs-h5: calc(var(--base-font-size) * pow(var(--ratio), 1));
   --fs-h6: var(--fs-sm);
+  */
 
   /* Fonts */
   --body-font: var(--inter-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -58,24 +70,40 @@
   --special-font: var(--body-font);
 
   /* Spacings */
-  --sct-vert-margin: var(--xl);
-  --subsct-vert-margin: calc(var(--lg) + var(--md));
-  --sct-horiz-margin: var(--sm);
+  --vert-spacing: 48px;
+  --sct-vert-margin: 96px;
+  --subsct-vert-margin: calc(var(--sct-vert-margin) / 2);
+  --sct-horiz-margin: 12px;
   --sct-default-margins: var(--sct-vert-margin) var(--sct-horiz-margin);
-
-  --vert-spacing: var(--lg);
 
   --navbar-height: 78px;
 
-  --max-paragraph-width: 720px;
-  --max-block-width: 100%;
-  --max-container-width: 1200px;
+  --max-paragraph-width: 960px;
+  --max-block-width: 1200px;
+  --max-container-width: 1440px;
 }
 
 @media screen and (min-width: 900px) {
   * {
     --base-font-size: 19px;
     --ratio: 1.333333333;
+
+    --fs-p: 21px;
+    --fs-sm: 16px;
+    --fs-btn: var(--fs-p);
+
+    --fs-h1: 65px;
+    --fs-h2: 50px;
+    --fs-h3: 37px;
+    --fs-h4: 28px;
+    --fs-h5: var(--fs-p);
+    --fs-h6: var(--fs-sm);
+
+    --vert-spacing: 72px;
+
+    --sct-vert-margin: 120px;
+    --sct-horiz-margin: 72px;
+    --sct-default-margins: var(--sct-vert-margin) var(--sct-horiz-margin);
 
     --navbar-height: 96px;
   }

@@ -146,6 +146,9 @@
 
   .texts {
     margin-top: var(--md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sm);
   }
 }
 
