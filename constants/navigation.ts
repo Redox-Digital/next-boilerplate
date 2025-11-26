@@ -9,11 +9,11 @@ export type NavLinkType = {
 export const mainNavLinks: NavLinkType[] = [
   {
     url: '/',
-    label: 'Home',
+    label: 'Accueil',
   },
   {
-    url: '/about',
-    label: 'About',
+    url: '/a-propos',
+    label: 'À propos',
   },
   {
     url: '/services',
@@ -48,16 +48,16 @@ export const socialLinks: NavLinkType[] = [
   {
     url: 'https://www.instagram.com/redox/',
     label: 'Instagram',
-    icon: '/pictograms/instagram.svg',
+    icon: 'icon-instagram',
   },
   {
     url: 'https://www.facebook.com/redox',
     label: 'Facebook',
-    icon: '/pictograms/facebook.svg',
+    icon: 'icon-facebook',
   },
   {
     url: 'https://www.linkedin.com/redox',
     label: 'LinkedIn',
-    icon: '/pictograms/linkedin.svg',
+    icon: 'icon-linkedin',
   },
 ];
