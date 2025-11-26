@@ -47,7 +47,11 @@ export default function Home() {
       </MediaHero>
 
       <main className="home">
-        <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg">
+        <TextImageSection
+          surtitle="Surtitle"
+          title={'Section Title'}
+          imgPath="./layouts/placeholder2.jpg"
+        >
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
@@ -58,7 +62,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button href={'/about'}>Read more</Button>
+            <Button href={'/a-propos'}>Read more</Button>
           </>
         </TextImageSection>
 
@@ -68,10 +72,18 @@ export default function Home() {
           overlayOpacity={0.5}
           backgroundImageUrl="./layouts/placeholder1.jpg"
         >
-          <Button href="/contact">Nous contacter</Button>
+          <Button href="/contact" outline secondary>
+            Nous contacter
+          </Button>
         </ContactCTA>
 
-        <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg" dark>
+        <TextImageSection
+          title={'Section Title'}
+          surtitle="Surtitle"
+          imgPath="./layouts/placeholder2.jpg"
+          imgLastDesktop
+          imgFirstMobile
+        >
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
@@ -82,7 +94,7 @@ export default function Home() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
               Ipsam minima laudantium vitae laboriosam id alias dolorem!
             </p>
-            <Button href={'/about'}>Read more</Button>
+            <Button href={'/a-propos'}>Read more</Button>
           </>
         </TextImageSection>
 

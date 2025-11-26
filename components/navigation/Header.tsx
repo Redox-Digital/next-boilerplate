@@ -68,7 +68,7 @@ export default function Header() {
       >
         <div className={css.container}>
           <Link href="/" className={css.logo}>
-            <Image src={logo} alt="" height={50} width={100} />
+            <Image src={logo} alt="" height={50} width={200} />
           </Link>
 
           <div className={css.links}>
@@ -82,7 +82,7 @@ export default function Header() {
                     </Link>
                   </DropdownMenu>
                 ) : link.btn ? (
-                  <Button key={link.url} href={link.url} small>
+                  <Button key={link.url} href={link.url}>
                     {link.label}
                   </Button>
                 ) : (
@@ -98,7 +98,7 @@ export default function Header() {
         </div>
       </nav>
 
-      <MobileMenu open={menuOpen} links={mainNavLinks} />
+      <MobileMenu open={menuOpen} links={mainNavLinks} toggleMenu={toggleMenu} />
     </>
   );
 }
@@ -111,8 +111,8 @@ type DropdownProps = {
 function DropdownMenu({ sublinks, children }: DropdownProps) {
   return (
     <div className={css.dropdownMenu}>
-      {children}
-      <span>
+      <span className={css.label}>{children}</span>
+      <span className={css.sublinks}>
         {sublinks.map((sublink: NavLinkType) => (
           <Link key={sublink.url} href={sublink.url}>
             {sublink.label}
@@ -124,11 +124,13 @@ function DropdownMenu({ sublinks, children }: DropdownProps) {
 }
 
 type MobileMenuProps = {
+  toggleMenu: () => void;
+
   open: boolean;
   links?: NavLinkType[];
 };
 
-function MobileMenu({ open, links }: MobileMenuProps) {
+function MobileMenu({ open, links, toggleMenu }: MobileMenuProps) {
   useEffect(() => {
     open ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
   }, [open]);
@@ -140,24 +142,24 @@ function MobileMenu({ open, links }: MobileMenuProps) {
           {links?.map((link: NavLinkType) => (
             <>
               {link.subLinks ? (
-                <>
-                  <Link key={link.url} href={link.url}>
+                <div className={css.submenu}>
+                  <Link key={link.url} href={link.url} onClick={toggleMenu}>
                     {link.label}
                   </Link>
-                  <span className={css.submenu} key={link.url}>
+                  <span className={css.sublinks} key={link.url}>
                     {link.subLinks.map((subLink: NavLinkType) => (
-                      <Link key={subLink.url} href={subLink.url}>
+                      <Link key={subLink.url} href={subLink.url} onClick={toggleMenu}>
                         {subLink.label}
                       </Link>
                     ))}
                   </span>
-                </>
+                </div>
               ) : link.btn ? (
-                <Button key={link.url} href={link.url} small>
+                <Button key={link.url} href={link.url} small onClick={toggleMenu}>
                   {link.label}
                 </Button>
               ) : (
-                <Link key={link.url} href={link.url}>
+                <Link key={link.url} href={link.url} onClick={toggleMenu}>
                   {link.label}
                 </Link>
               )}

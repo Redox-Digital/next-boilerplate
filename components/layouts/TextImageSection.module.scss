@@ -1,89 +1,72 @@
 .txtImgSection {
   > div {
-    flex-direction: column;
-    gap: var(--md);
+    flex-direction: column-reverse;
+    gap: var(--lg);
     align-items: center;
     justify-content: center;
+
+    &.invertedMobile {
+      flex-direction: column;
+      gap: var(--md);
+    }
   }
 
-  &__image {
+  .image {
     max-width: 100%;
     height: 100%;
-    max-height: 80vh;
-    width: calc((100% - var(--md)) / 2);
+    max-height: 720px;
+    width: 100%;
+    max-width: 540px;
     // max-width: 310px;
-    background-size: cover;
-    background-position: center;
+    object-fit: cover;
   }
 
-  &__content {
+  .content {
     display: flex;
     flex-direction: column;
-    gap: var(--md);
-    width: calc((100% - var(--md)) / 2);
+    gap: var(--xs);
+    width: 100%;
+    max-width: 540px;
 
     > img {
       max-width: 100%;
       height: auto;
     }
 
-    > h5 {
-      display: none;
+    .surtitle {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: var(--fs-h5);
     }
-  }
 
-  &__texts {
-    display: flex;
-    flex-direction: column;
-    gap: var(--md);
-
-    > p {
-      margin: 0;
+    h2 {
+      margin-bottom: var(--sm);
     }
-  }
 
-  h5 {
-    color: var(--primary-muted);
+    .texts {
+      display: flex;
+      flex-direction: column;
+      gap: var(--md);
+
+      > p {
+        margin: 0;
+      }
+    }
   }
 }
 
-@media screen and (min-width: 768px) {
-  .txtImgSection {
-    > div {
-      flex-direction: row;
-      height: fit-content;
-      gap: var(--sct-horiz-margin);
+@media screen and (min-width: 900px) {
+  .txtImgSection > div {
+    flex-direction: row;
+    gap: var(--lg);
+
+    &.invertedDesktop {
+      flex-direction: row-reverse;
+    }
+
+    > .content {
       width: 100%;
-    }
-
-    &__image {
-      margin: 0;
-    }
-
-    &__surtitle {
-      display: none;
-    }
-
-    &__texts {
-      width: 100%;
-    }
-
-    &__content {
-      width: 100%;
-      margin-top: 0;
-
-      > h2 {
-        width: 100%;
-      }
-
-      > img {
-        height: 100%;
-        width: auto;
-      }
-
-      > h5 {
-        display: flex;
-      }
+      max-width: 100%;
     }
   }
 }

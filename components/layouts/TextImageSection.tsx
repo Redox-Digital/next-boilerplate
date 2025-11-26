@@ -1,32 +1,37 @@
 import Image from 'next/image';
-import style from './TextImageSection.module.scss';
-import logo from '/public/logos/logoipsum.svg';
+import css from './TextImageSection.module.scss';
 
 type Props = {
+  id?: string;
   title: string;
+  surtitle?: string;
   children: string | JSX.Element;
   imgPath: string;
-  dark?: boolean;
+  imgFirstMobile?: boolean;
+  imgLastDesktop?: boolean;
 };
 
-export default function TextImageSection({ title, children, dark, imgPath }: Props) {
+export default function TextImageSection({
+  id,
+  title,
+  surtitle,
+  children,
+  imgLastDesktop,
+  imgFirstMobile,
+  imgPath,
+}: Props) {
   return (
-    <section className={`${style.txtImgSection} ${dark ? 'dark' : ''}`}>
-      <div className="container">
-        <Image
-          className={style.txtImgSection__image}
-          src={imgPath}
-          alt={''}
-          width={1000}
-          height={1000}
-        />
-        <div className={style.txtImgSection__content}>
-          {title === 'logo' ? (
-            <Image src={logo} alt={''} width="900" height="300" />
-          ) : (
-            <h2 className={`all-caps`}>{title}</h2>
-          )}
-          <div className={style.txtImgSection__texts}>{children}</div>
+    <section className={css.txtImgSection} id={id || ''}>
+      <div
+        className={`container ${imgLastDesktop && css.invertedDesktop} ${
+          imgFirstMobile && css.invertedMobile
+        }`}
+      >
+        <Image className={css.image} src={imgPath} alt={''} width={1000} height={1000} />
+        <div className={css.content}>
+          {surtitle && <p className={css.surtitle}>{surtitle}</p>}
+          <h2>{title}</h2>
+          <div className={css.texts}>{children}</div>
         </div>
       </div>
     </section>

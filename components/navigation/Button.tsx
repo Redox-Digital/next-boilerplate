@@ -7,7 +7,6 @@ type Props = {
   secondary?: boolean;
   outline?: boolean;
   small?: boolean;
-  dark?: boolean;
   className?: string;
   blank?: boolean;
   title?: string;
@@ -21,7 +20,6 @@ export default function Button({
   children,
   secondary,
   outline,
-  dark,
   small,
   className,
   blank,
@@ -34,7 +32,7 @@ export default function Button({
       href={href}
       className={`${css.btn} ${secondary && css.secondary} ${small && css.small} ${
         outline && css.outline
-      } ${dark && css.dark} ${className}`}
+      } ${className}`}
       target={blank ? '_blank' : ''}
       onClick={onClick}
       title={title}
@@ -44,9 +42,8 @@ export default function Button({
   ) : (
     <button
       type={type}
-      className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
-        dark && css.dark
-      } ${className}`}
+      className={`${css.btn} ${small && css.small} ${outline && css.outline}
+       ${className}`}
       onClick={onClick ? onClick : () => null}
       title={title}
     >

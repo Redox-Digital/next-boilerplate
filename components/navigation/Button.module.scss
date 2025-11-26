@@ -4,10 +4,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 16px 20px;
+  padding: 12px 18px;
   gap: var(--xs);
   width: fit-content;
   height: fit-content !important;
+  min-height: 40px; // ensure clickable area + 4px for outline
 
   @media screen and (min-width: 900px) {
     min-width: 120px;
@@ -15,11 +16,10 @@
 
   border: none;
   border-radius: 0px;
-  outline: solid 1px var(--primary);
+  outline: solid 2px var(--primary);
 
   font-size: var(--fs-btn);
   font-weight: 500;
-  letter-spacing: 0.07em;
 
   background: var(--primary);
   color: var(--white);
@@ -49,21 +49,40 @@
 .small {
   min-width: auto;
 
-  padding: 12px 24px;
+  padding: 12px 20px;
   font-size: var(--fs-sm);
+  min-height: 38px;
 
   line-height: 1em;
 }
 
 // Types
+.secondary {
+  background: var(--secondary);
+  color: var(--black);
+  outline-color: var(--secondary);
+
+  &:hover {
+    outline-color: var(--secondary-dark);
+    background: var(--secondary-dark);
+    color: var(--white);
+  }
+
+  &:active {
+    outline: solid 2px var(--secondary-dark);
+    background: var(--secondary-muted);
+    color: var(--black);
+  }
+}
+
 .outline {
-  outline-color: var(--gray);
-  color: var(--white);
+  outline-color: var(--primary);
+  color: var(--primary);
   background: transparent;
 
   &:hover {
     outline-color: var(--accent);
-    color: var(--white);
+    color: var(--black);
     background: transparent;
   }
 
@@ -74,6 +93,21 @@
   }
 }
 
-.darkBg {
-  color: var(--white);
+.outline.secondary {
+  outline-color: var(--secondary);
+  color: var(--secondary);
+  background: transparent;
+
+  &:hover {
+    outline-color: var(--secondary-muted);
+    color: var(--secondary-muted);
+
+    background: transparent;
+  }
+
+  &:active {
+    outline-color: var(--secondary-dark);
+    color: var(--secondary-dark);
+    background: transparent;
+  }
 }
