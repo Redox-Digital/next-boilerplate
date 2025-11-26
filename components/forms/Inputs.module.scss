@@ -11,7 +11,7 @@
     padding: var(--sm);
     background: var(--white);
     border: 1px solid var(--gray);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-p);
   }
 
   > textarea {
@@ -23,7 +23,7 @@
   }
 
   > span {
-    font-size: var(--fs-h5);
+    font-size: var(--fs-h6);
     letter-spacing: 0.08em;
   }
 }

@@ -30,7 +30,7 @@
     right: 0;
     bottom: 0;
     z-index: 0;
-    background-color: var(--accent);
+    background-color: var(--primary);
 
     &.gradient {
       // Background color : gold-white
@@ -40,6 +40,8 @@
       --start: 0%;
       --end: 60%;
       --color-hsl: 45, 40%, 96%;
+
+      background-color: none;
 
       background: linear-gradient(
         var(--angle),
