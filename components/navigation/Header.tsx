@@ -5,7 +5,7 @@ import css from './Header.module.scss';
 import burgerCss from './Burger.module.scss';
 import Button from './Button';
 import { useEffect, useState } from 'react';
-import { mainNavLinks, legalLinks, socialLinks, NavLinkType } from '@/constants/navigation';
+import { mainNavLinks, NavLinkType } from '@/constants/navigation';
 
 export default function Header() {
   //navbar scroll when active state
@@ -68,14 +68,15 @@ export default function Header() {
       >
         <div className={css.container}>
           <Link href="/" className={css.logo}>
-            <Image src={logo} alt="" height={30} width={100} />
+            <Image src={logo} alt="" height={50} width={100} />
           </Link>
 
           <div className={css.links}>
             {mainNavLinks.map((link: NavLinkType) => (
               <>
-                {link.subLinks ? (
-                  <DropdownMenu>
+                {link.subLinks && link.subLinks.length !== 0 ? (
+                  <DropdownMenu sublinks={link.subLinks}>
+                    {/* Head link */}
                     <Link key={link.url} href={link.url} className={css.submenu}>
                       {link.label}
                     </Link>
@@ -97,23 +98,26 @@ export default function Header() {
         </div>
       </nav>
 
-      <MobileMenu open={menuOpen} toggleMenu={toggleMenu} links={mainNavLinks} />
+      <MobileMenu open={menuOpen} links={mainNavLinks} />
     </>
   );
 }
 
 type DropdownProps = {
+  sublinks: NavLinkType[];
   children?: string | React.ReactNode;
 };
 
-function DropdownMenu({ children }: DropdownProps) {
+function DropdownMenu({ sublinks, children }: DropdownProps) {
   return (
     <div className={css.dropdownMenu}>
       {children}
       <span>
-        <Link href="/services/marketing">Marketing</Link>
-        <Link href="/services/web">Web</Link>
-        <Link href="/services/creation">Création</Link>
+        {sublinks.map((sublink: NavLinkType) => (
+          <Link key={sublink.url} href={sublink.url}>
+            {sublink.label}
+          </Link>
+        ))}
       </span>
     </div>
   );
@@ -121,11 +125,10 @@ function DropdownMenu({ children }: DropdownProps) {
 
 type MobileMenuProps = {
   open: boolean;
-  toggleMenu: () => void;
   links?: NavLinkType[];
 };
 
-function MobileMenu({ open, toggleMenu, links }: MobileMenuProps) {
+function MobileMenu({ open, links }: MobileMenuProps) {
   useEffect(() => {
     open ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = 'auto');
   }, [open]);

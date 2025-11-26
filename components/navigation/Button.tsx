@@ -4,12 +4,13 @@ import Image from 'next/image';
 
 type Props = {
   href?: string;
+  secondary?: boolean;
   outline?: boolean;
   small?: boolean;
-  darkBg?: boolean;
-  title?: string;
+  dark?: boolean;
   className?: string;
   blank?: boolean;
+  title?: string;
   onClick?: () => void;
   children?: string | React.ReactNode;
 };
@@ -17,20 +18,21 @@ type Props = {
 export default function Button({
   href,
   children,
+  secondary,
   outline,
-  darkBg,
+  dark,
+  small,
   className,
   blank,
   title,
-  small,
   onClick,
 }: Props) {
   return href ? (
     <Link
       href={href}
-      className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
-        darkBg && css.darkBg
-      } ${className}`}
+      className={`${css.btn} ${secondary && css.secondary} ${small && css.small} ${
+        outline && css.outline
+      } ${dark && css.dark} ${className}`}
       target={blank ? '_blank' : ''}
       onClick={onClick}
       title={title}
@@ -41,7 +43,7 @@ export default function Button({
     <button
       type="button"
       className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
-        darkBg && css.darkBg
+        dark && css.dark
       } ${className}`}
       onClick={onClick ? onClick : () => null}
       title={title}

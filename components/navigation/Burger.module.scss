@@ -1,7 +1,8 @@
 .burger {
   --w: 30px;
-  --h: 24px;
-  --b: 4px; // "border" width
+  --h: 20px;
+  --b: 3px; // "border" width
+  --rad: 0px; // border radius
 
   z-index: 12;
   width: var(--w);
@@ -25,6 +26,7 @@
     position: absolute;
     height: var(--b);
     width: 100%;
+    border-radius: var(--rad);
     background: var(--primary);
     opacity: 1;
     left: 0;
@@ -69,13 +71,13 @@
         -moz-transform: rotate(45deg);
         -o-transform: rotate(45deg);
         transform: rotate(45deg);
-        top: 0px;
+        top: calc(0px - var(--b) / 2);
         left: var(--b);
       }
 
       &:nth-child(2) {
         width: 0%;
-        opacity: 0;
+        // opacity: 0;
       }
 
       &:nth-child(3) {
@@ -83,7 +85,7 @@
         -moz-transform: rotate(-45deg);
         -o-transform: rotate(-45deg);
         transform: rotate(-45deg);
-        top: calc(var(--h) - var(--b) + 1px);
+        top: calc(var(--h) - var(--b) + var(--b));
         left: var(--b);
       }
     }

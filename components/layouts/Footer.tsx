@@ -1,78 +1,69 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
-import style from './Footer.module.scss';
-import Button from '../navigation/Button';
-import Address from '../content/Address';
-import Socials from '../content/Socials';
+import css from './Footer.module.scss';
+import { mainNavLinks, socialLinks } from '@/constants/navigation';
+import { openingHours } from '@/constants/address';
 
 export default function Footer() {
   return (
-    <footer className={style.footer}>
-      <div className={style.footerBody}>
-        <div className={style.footerBody__logo}>
+    <footer className={css.footer}>
+      <div className={css.body}>
+        <div className={`${css.col} ${css.contact}`}>
           <Image src={logo} alt="logo" className="logo" />
-        </div>
-        <div className={style.footerBody__top}>
-          <h5>Suivez-nous sur les réseaux sociaux</h5>
-          <div className={style.footerBody__top__socials}>
-            <Socials />
-          </div>
-        </div>
-        <div className={style.footerBody__bottom}>
-          <div className={style.footerBody__bottom__right}>
-            <Link aria-label="Accéder à la page d'accueil" href="/">
-              Accueil
-            </Link>
-            <div className={style.footer__submenu}>
-              <h5>Services</h5>
-              <Link
-                href="/services/particuliers"
-                aria-label="Accéder à la page des services pour Particuliers"
-              >
-                Particuliers
+          <ul className={css.address}>
+            <li>Redox Digital Sàrl</li>
+            <li>Rue des Fahys 21, 2000 Neuchâtel</li>
+            <li>
+              <Link href={`tel:${process.env.phone}`} target="_blank">
+                <span id="phone" />
               </Link>
-              <Link
-                href="/services/collectivites"
-                aria-label="Accéder à la page des services pour Collectivités"
-              >
-                Collectivités
+            </li>
+            <li>
+              <Link href={`mailto:${process.env.mail}`} target="_blank">
+                <span id="mail" />
               </Link>
-              <Link
-                href="/services/entreprises"
-                aria-label="Accéder à la page des services pour entreprises"
-              >
-                Entreprises
-              </Link>
-            </div>
+            </li>
+          </ul>
 
-            <Link aria-label="Accéder à la page d'à propos" href="/about">
-              À propos
-            </Link>
-            <Link aria-label="Accéder à la page d'emploi" href="/careers">
-              Emplois
-            </Link>
-          </div>
-          <div className={style.footerBody__bottom__left}>
-            <Address />
-
-            <Button ariaLabel="Vers le formulaire de contact" size="big" to="/contact">
-              Contact
-            </Button>
-          </div>
+          <ul className={css.socials}>
+            {socialLinks.map((link) => (
+              <li key={link.url}>
+                <Link href={link.url} title={link.label}>
+                  {link.icon ? (
+                    <Image alt={link.label} src={link.icon} width={30} height={30} />
+                  ) : (
+                    link.label
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={`${css.col} ${css.navigation}`}>
+          <h5>Horaires</h5>
+          <ul>
+            {openingHours.map((elt) => (
+              <li key={elt.day}>
+                {elt.day} : {elt.hours}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={`${css.col} ${css.navigation}`}>
+          <h5>Navigation</h5>
+          <ul>
+            {mainNavLinks.map((link) => (
+              <li key={link.url}>
+                <Link href={link.url}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <div className={style.footerBottom}>
-        <small className="xs">
-          <Link
-            href={'/confidentialite'}
-            aria-label="Vers notre déclaration de protection des données"
-          >
-            Protection des données & mentions légales
-          </Link>
-        </small>
+      <div className={css.bottom}>
         <small>
-          &copy; 2023 My Company Sàrl – Site web réalisé par{' '}
+          &copy; 2025 My Company Sàrl – Site web réalisé par{' '}
           <Link
             aria-label="Accéder au site de Redox Digital"
             href="https://redoxdigital.ch"
@@ -80,6 +71,14 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             Redox&nbsp;Digital
+          </Link>
+        </small>
+        <small>
+          <Link
+            href={'/confidentialite'}
+            aria-label="Vers notre déclaration de protection des données"
+          >
+            Protection des données & mentions légales
           </Link>
         </small>
       </div>

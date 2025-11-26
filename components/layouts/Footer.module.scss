@@ -2,7 +2,7 @@
   border-top: 4px solid var(--primary-dark);
   background-color: var(--dark);
 
-  &__submenu > a {
+  .submenu > a {
     font-size: var(--fs-sm);
     text-transform: capitalize;
     letter-spacing: 0.01em;
@@ -16,7 +16,7 @@
     }
   }
 
-  &Body {
+  > .body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
     padding: var(--md) var(--sct-horiz-margin) 50px;
     width: 100%;
 
-    &__logo {
+    .logo {
       order: 0;
       width: 100%;
       max-width: var(--large-content-width);
@@ -36,7 +36,7 @@
       }
     }
 
-    &__top {
+    .top {
       order: 1;
       display: flex;
       flex-direction: column;
@@ -57,7 +57,7 @@
       }
     }
 
-    &__bottom {
+    .bottom {
       order: 2;
       display: flex;
       flex-direction: column;
@@ -66,7 +66,7 @@
       max-width: var(--large-content-width);
       margin: 0 auto;
 
-      &__right {
+      .right {
         display: flex;
         flex-direction: column;
 
@@ -84,7 +84,7 @@
         }
       }
 
-      &__left {
+      .left {
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -102,7 +102,7 @@
     }
   }
 
-  &Bottom {
+  > .bottom {
     display: flex;
     align-items: center;
     padding: var(--md) var(--sct-horiz-margin);
@@ -121,11 +121,11 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 720px) {
   .footer {
     border-top: 4px solid var(--primary-dark);
 
-    &__submenu > a {
+    .submenu > a {
       font-size: var(--fs-sm);
       text-transform: capitalize;
       letter-spacing: 0.01em;
@@ -139,7 +139,7 @@
       }
     }
 
-    &Body {
+    > .body {
       display: flex;
       flex-direction: column;
       justify-content: center;

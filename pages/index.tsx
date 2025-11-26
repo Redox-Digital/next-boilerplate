@@ -4,7 +4,7 @@ import Hero from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
 import ContactCTA from '@/components/content/ContactCTA';
-import ContactForm from '@/components/content/ContactForm';
+import ContactForm from '@/components/forms/ContactForm';
 import Map from '@/components/content/Map';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
@@ -52,7 +52,14 @@ export default function Home() {
           </>
         </TextImageSection>
 
-        <ContactCTA />
+        <ContactCTA
+          title="Contactez-nous"
+          description="Nous sommes là pour vous aider."
+          overlayOpacity={0.5}
+          backgroundImageUrl="./layouts/placeholder1.jpg"
+        >
+          <Button href="/contact">Nous contacter</Button>
+        </ContactCTA>
 
         <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg" dark>
           <>

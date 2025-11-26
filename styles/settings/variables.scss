@@ -1,11 +1,11 @@
 * {
   --true-white: #fff;
   --white: #fafafa;
-  --dark: #232323;
+  --black: #050505;
 
+  --light-gray: #f5f5f5;
   --gray: #d9d9d9;
   --dark-gray: #696969;
-  --black: #050505;
 
   --primary: #0059ff;
   --primary-dark: #202f60;
@@ -36,16 +36,20 @@
   --xl: 96px;
 
   /* Font sizes */
-  /* ratio : 1.25 */
-  --fs-h1: 49px;
-  --fs-h2: 39px;
-  --fs-h3: 31px;
-  --fs-h4: 25px;
-  --fs-h5: 20px;
-  --fs-h6: 14px;
-  --fs-p: 16px;
-  --fs-sm: 13px;
-  --fs-btn: var(--fs-p);
+  --base-font-size: 16px;
+  --ratio: 1.25;
+
+  --fs-p: calc(var(--base-font-size) * pow(var(--ratio), 0));
+  --fs-sm: calc(var(--base-font-size) * pow(var(--ratio), -1));
+  --fs-btn: calc(var(--fs-p) - 1px);
+
+  --fs-h1: calc(var(--base-font-size) * pow(var(--ratio), 5));
+  --fs-h2: calc(var(--base-font-size) * pow(var(--ratio), 4));
+  --fs-h3: calc(var(--base-font-size) * pow(var(--ratio), 3));
+  --fs-h4: calc(var(--base-font-size) * pow(var(--ratio), 2));
+  --fs-h4: calc(var(--base-font-size) * pow(var(--ratio), 1));
+
+  --fs-h6: var(--fs-sm);
 
   /* Fonts */
   --body-font: var(--inter-font), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -54,12 +58,12 @@
   --special-font: var(--body-font);
 
   /* Spacings */
-  --sct-vert-margin: 100px;
-  --subsct-vert-margin: 75px;
-  --sct-horiz-margin: 15px;
+  --sct-vert-margin: var(--xl);
+  --subsct-vert-margin: calc(var(--lg) + var(--md));
+  --sct-horiz-margin: var(--sm);
   --sct-default-margins: var(--sct-vert-margin) var(--sct-horiz-margin);
 
-  --navbar-height: 80px;
+  --navbar-height: 78px;
 
   --max-paragraph-width: 720px;
   --max-block-width: 100%;
@@ -68,15 +72,10 @@
 
 @media screen and (min-width: 900px) {
   * {
-    /* ratio : 1.333 */
-    --fs-h1: 76px;
-    --fs-h2: 57px;
-    --fs-h3: 43px;
-    --fs-h4: 32px;
-    --fs-h5: 24px;
-    --fs-h6: 14px;
-    --fs-p: 18px;
-    --fs-sm: 14px;
+    --base-font-size: 19px;
+    --ratio: 1.333333333;
+
+    --navbar-height: 96px;
   }
 }
 
