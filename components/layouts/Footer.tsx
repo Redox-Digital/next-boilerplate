@@ -10,10 +10,15 @@ export default function Footer() {
     <footer className={css.footer}>
       <div className={css.body}>
         <div className={`${css.col} ${css.contact}`}>
-          <Image src={logo} alt="logo" className="logo" />
+          <Image src={logo} alt="logo" className={css.logo} />
+
           <ul className={css.address}>
-            <li>Redox Digital Sàrl</li>
-            <li>Rue des Fahys 21, 2000 Neuchâtel</li>
+            <li>
+              <span>Redox Digital Sàrl</span>
+            </li>
+            <li>
+              <span>Rue des Fahys 21, 2000 Neuchâtel</span>
+            </li>
             <li>
               <Link href={`tel:${process.env.phone}`} target="_blank">
                 <span id="phone" />
@@ -30,26 +35,26 @@ export default function Footer() {
             {socialLinks.map((link) => (
               <li key={link.url}>
                 <Link href={link.url} title={link.label}>
-                  {link.icon ? (
-                    <Image alt={link.label} src={link.icon} width={30} height={30} />
-                  ) : (
-                    link.label
-                  )}
+                  {link.icon ? <i className={link.icon} /> : link.label}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
+
         <div className={`${css.col} ${css.navigation}`}>
           <h5>Horaires</h5>
           <ul>
             {openingHours.map((elt) => (
               <li key={elt.day}>
-                {elt.day} : {elt.hours}
+                <span>
+                  {elt.day} : {elt.hours}
+                </span>
               </li>
             ))}
           </ul>
         </div>
+
         <div className={`${css.col} ${css.navigation}`}>
           <h5>Navigation</h5>
           <ul>
@@ -61,26 +66,28 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className={css.bottom}>
-        <small>
-          &copy; 2025 My Company Sàrl – Site web réalisé par{' '}
-          <Link
-            aria-label="Accéder au site de Redox Digital"
-            href="https://redoxdigital.ch"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redox&nbsp;Digital
-          </Link>
-        </small>
-        <small>
-          <Link
-            href={'/confidentialite'}
-            aria-label="Vers notre déclaration de protection des données"
-          >
-            Protection des données & mentions légales
-          </Link>
-        </small>
+      <div className={css.foot}>
+        <div className={css.container}>
+          <small>
+            &copy; 2025 My Company Sàrl – Site web réalisé par{' '}
+            <Link
+              aria-label="Accéder au site de Redox Digital"
+              href="https://redoxdigital.ch"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Redox&nbsp;Digital
+            </Link>
+          </small>
+          <small>
+            <Link
+              href={'/confidentialite'}
+              aria-label="Vers notre déclaration de protection des données"
+            >
+              Protection des données & mentions légales
+            </Link>
+          </small>
+        </div>
       </div>
     </footer>
   );
