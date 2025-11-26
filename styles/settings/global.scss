@@ -28,11 +28,10 @@ section {
 
 .container {
   width: 100%;
-  max-width: var(--large-content-width);
+  max-width: var(--max-container-width);
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
 }
 
 // Display
