@@ -1,20 +1,38 @@
-import style from './ContactCTA.module.scss';
-import Button from '../navigation/Button';
+import css from './ContactCTA.module.scss';
 
-export default function ContactCTA() {
+type ContactCTAProps = {
+  title: string;
+  description: string;
+  overlayOpacity?: number;
+  overlayGradient?: boolean;
+  backgroundImageUrl?: string;
+  children?: React.ReactNode;
+};
+
+export default function ContactCTA({
+  title,
+  description,
+  overlayOpacity,
+  overlayGradient,
+  backgroundImageUrl,
+  children,
+}: ContactCTAProps) {
   return (
     <section
-      className={`${style.contactCTA} light`}
-      style={{ backgroundImage: 'url(/layouts/placeholder1.jpg)' }}
+      className={`${css.contactCTA}`}
+      style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : '' }}
     >
-      <div className={style.contactCTA__overlay} />
-      <div className={style.container}>
-        <h3>Contact CTA Title</h3>
-        <p>Contact CTA description, it can be long if you want</p>
-        <Button to="/contact" ariaLabel="Vers le formulaire de contact">
-          Contact us
-        </Button>
+      <div
+        className={`${css.overlay} ${overlayGradient && css.gradient}`}
+        style={{ opacity: overlayOpacity }}
+      />
+      <div className={css.container}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+        {children}
       </div>
     </section>
   );
 }
+
+export function MultiCTA() {}

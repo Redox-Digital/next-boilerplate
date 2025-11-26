@@ -5,9 +5,12 @@
   gap: var(--sm);
   background-size: cover;
   background-position: center;
+
   justify-content: center;
   // align-items: flex-end;
   position: relative;
+
+  color: var(--white);
 
   > .container {
     width: 100%;
@@ -20,56 +23,64 @@
     }
   }
 
-  &__overlay {
+  > .overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 0;
+    background-color: var(--accent);
 
-    // Background color : gold-white
-    --start-opacity: 0;
-    --end-opacity: 0.9;
-    --angle: 180deg;
-    --start: 0%;
-    --end: 60%;
+    &.gradient {
+      // Background color : gold-white
+      --start-opacity: 0;
+      --end-opacity: 0.9;
+      --angle: 180deg;
+      --start: 0%;
+      --end: 60%;
+      --color-hsl: 45, 40%, 96%;
 
-    background: linear-gradient(
-      var(--angle),
-      hsla(45, 40%, 96%, var(--start-opacity)) var(--start),
-      hsla(45, 40%, 96%, var(--end-opacity)) var(--end)
-    );
-    background: -moz-linear-gradient(
-      var(--angle),
-      hsla(45, 40%, 96%, var(--start-opacity)) var(--start),
-      hsla(45, 40%, 96%, var(--end-opacity)) var(--end)
-    );
-    background: -webkit-linear-gradient(
-      var(--angle),
-      hsla(45, 40%, 96%, var(--start-opacity)) var(--start),
-      hsla(45, 40%, 96%, var(--end-opacity)) var(--end)
-    );
+      background: linear-gradient(
+        var(--angle),
+        hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+        hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+      );
+      background: -moz-linear-gradient(
+        var(--angle),
+        hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+        hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+      );
+      background: -webkit-linear-gradient(
+        var(--angle),
+        hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+        hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+      );
+    }
   }
 }
 
 @media screen and (min-width: 768px) {
-  .contactCTA > .container {
-    min-width: 640px;
-    // width: 50%;
-  }
+  .contactCTA {
+    > .container {
+      min-width: 640px;
+      // width: 50%;
+    }
 
-  .contactCTA__overlay {
-    --angle: 0deg;
-    --end: 50%;
-    --start: 0%;
+    > .overlay.gradient {
+      --angle: 0deg;
+      --end: 50%;
+      --start: 0%;
+    }
   }
 }
 
 @media screen and (min-width: 900px) {
-  .contactCTA__overlay {
-    --angle: 0deg;
-    --end: 80%;
-    --start: 20%;
+  .contactCTA {
+    .overlay.gradient {
+      --angle: 0deg;
+      --end: 80%;
+      --start: 20%;
+    }
   }
 }
