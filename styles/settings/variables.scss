@@ -1,4 +1,5 @@
 * {
+  /* Colors */
   --true-white: #fff;
   --white: #fafafa;
   --black: #050505;
@@ -91,6 +92,7 @@
 
     --fs-p: 21px;
     --fs-sm: 16px;
+    --fs-btn: calc(var(--fs-p) - 2px);
 
     --fs-h1: 65px;
     --fs-h2: 50px;
