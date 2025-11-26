@@ -1,0 +1,128 @@
+.cta {
+  padding: var(--sct-default-margins);
+  position: relative;
+  color: var(--white);
+  justify-content: center;
+
+  background-size: cover;
+  background-position: center;
+
+  > div {
+    z-index: 1;
+  }
+
+  > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background-color: var(--primary);
+    opacity: 0.5;
+    transition: opacity ease-in-out 0.3s;
+  }
+}
+
+.bannerCTA {
+  padding-block: var(--md);
+  > div {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--md);
+
+    @media screen and (min-width: 550px) {
+      flex-direction: row;
+    }
+
+    @media screen and (min-width: 900px) {
+      gap: var(--xl);
+    }
+
+    > img {
+      width: fit-content;
+    }
+  }
+}
+
+.richCTA {
+  min-height: 400px;
+  align-items: center;
+  > div {
+    align-items: flex-start;
+    gap: var(--md);
+  }
+
+  a {
+    margin-top: var(--sm);
+  }
+
+  > .overlay.gradient {
+    // Background color : gold-white
+    --start-opacity: 0;
+    --end-opacity: 0.9;
+    --angle: 180deg;
+    --start: 0%;
+    --end: 60%;
+    --color-hsl: 45, 40%, 96%;
+
+    background-color: none;
+
+    background: linear-gradient(
+      var(--angle),
+      hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+      hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+    );
+    background: -moz-linear-gradient(
+      var(--angle),
+      hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+      hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+    );
+    background: -webkit-linear-gradient(
+      var(--angle),
+      hsla(var(--color-hsl), var(--start-opacity)) var(--start),
+      hsla(var(--color-hsl), var(--end-opacity)) var(--end)
+    );
+
+    @media screen and (min-width: 900px) {
+      --angle: 0deg;
+      --end: 50%;
+      --start: 0%;
+    }
+
+    @media screen and (min-width: 1200px) {
+      --angle: 0deg;
+      --end: 80%;
+      --start: 20%;
+    }
+  }
+}
+
+.multiCTA {
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--primary);
+  padding: 0;
+
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+  }
+
+  .subElement {
+    padding: var(--lg);
+
+    &:hover {
+      .overlay {
+        opacity: 0.2 !important;
+        transition: opacity ease-in-out 0.3s;
+      }
+    }
+
+    > div {
+      align-items: center;
+      text-align: center;
+    }
+  }
+}

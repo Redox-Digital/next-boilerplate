@@ -1,7 +1,7 @@
 import css from './Home.module.scss';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
-import ContactCTA from '@/components/content/ContactCTA';
+import RichCTA, { BannerCTA } from '@/components/content/CTA';
 import ContactForm from '@/components/forms/ContactForm';
 import Map from '@/components/content/Map';
 import Metadata from '@/components/content/Metadata';
@@ -66,16 +66,12 @@ export default function Home() {
           </>
         </TextImageSection>
 
-        <ContactCTA
-          title="Contactez-nous"
-          description="Nous sommes là pour vous aider."
-          overlayOpacity={0.5}
+        <BannerCTA
+          title={'Banner CTA Title'}
           backgroundImageUrl="./layouts/placeholder1.jpg"
-        >
-          <Button href="/contact" outline secondary>
-            Nous contacter
-          </Button>
-        </ContactCTA>
+          pictoUrl="./pictograms/quality.svg"
+          btn={{ label: `${process.env.phone}`, href: `tel:${process.env.phone}` }}
+        />
 
         <TextImageSection
           title={'Section Title'}
@@ -97,6 +93,17 @@ export default function Home() {
             <Button href={'/a-propos'}>Read more</Button>
           </>
         </TextImageSection>
+
+        <RichCTA
+          title="Contactez-nous"
+          description="Nous sommes là pour vous aider."
+          overlayOpacity={0.5}
+          backgroundImageUrl="./layouts/placeholder1.jpg"
+        >
+          <Button href="/contact" outline secondary>
+            Nous contacter
+          </Button>
+        </RichCTA>
 
         {/* <InstagramGallery /> */}
       </main>

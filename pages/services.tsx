@@ -1,3 +1,4 @@
+import { MultiCTA } from '@/components/content/CTA';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import { TextHero } from '@/components/layouts/Hero';
@@ -83,6 +84,25 @@ export default function Services() {
             <Button href={'/'}>Retour à l&apos;accueil</Button>
           </>
         </TextImageSection>
+        <MultiCTA
+          cards={[
+            {
+              title: 'Nous rendre visite',
+              description:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum.',
+              backgroundImageUrl: '/layouts/placeholder1.jpg',
+              action: { label: 'Nos bureaux', href: '/contact' },
+            },
+            {
+              title: 'Nos services',
+              description:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum.',
+              backgroundImageUrl: '/layouts/placeholder2.jpg',
+
+              action: { label: 'SAV', href: '/services' },
+            },
+          ]}
+        />
       </main>
     </>
   );
