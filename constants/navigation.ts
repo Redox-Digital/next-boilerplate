@@ -44,31 +44,20 @@ export const mainNavLinks: NavLinkType[] = [
   },
 ];
 
-export const legalLinks: NavLinkType[] = [
-  {
-    url: '/privacy',
-    label: 'Privacy policy',
-  },
-  {
-    url: '/terms',
-    label: 'Terms of agreement',
-  },
-];
-
 export const socialLinks: NavLinkType[] = [
   {
-    url: 'https://www.instagram.com/worldgolfchallenge/',
+    url: 'https://www.instagram.com/redox/',
     label: 'Instagram',
     icon: '/pictograms/instagram.svg',
   },
   {
-    url: 'https://www.facebook.com/worldgolfchallenge',
+    url: 'https://www.facebook.com/redox',
     label: 'Facebook',
     icon: '/pictograms/facebook.svg',
   },
   {
-    url: 'mailto:hello@wgc.gg',
-    label: 'E-mail',
-    icon: '/pictograms/envelope.svg',
+    url: 'https://www.linkedin.com/redox',
+    label: 'LinkedIn',
+    icon: '/pictograms/linkedin.svg',
   },
 ];
