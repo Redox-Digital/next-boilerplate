@@ -1,5 +1,4 @@
 import css from './Home.module.scss';
-import Hero from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
 import ContactCTA from '@/components/content/ContactCTA';
@@ -7,11 +6,12 @@ import ContactForm from '@/components/forms/ContactForm';
 import Map from '@/components/content/Map';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
+import MediaHero from '@/components/layouts/Hero';
 
 export default function Home() {
   const structuredData = generateStructuredData({
     page: {
-      url: 'https://redoxdigital.ch',
+      url: process.env.domain || '',
       title: 'Redox Digital | Marketing digital, solutions web sur-mesure, création de contenu',
     },
     services: [
@@ -29,12 +29,23 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
       </Metadata>
 
-      <Hero
+      <MediaHero
         title="My Company"
-        home
-        subtitle="We make the best NextJS templates"
-        source="./layouts/placeholder1.jpg"
-      />
+        surtitle="We make the best NextJS templates"
+        imgUrl="/layouts/placeholder1.jpg"
+        // videoUrl={[{ url: '/layouts/video_placeholder.mp4', type: 'mp4' }]}
+        // videoMobileUrl={[{ url: '/layouts/video_placeholder_mobile.mp4', type: 'mp4' }]}
+        opacity={0.75}
+        variant="bottom"
+      >
+        <>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nisi odio culpa ratione?
+          </p>
+          <Button href="/a-propos">À propos</Button>
+        </>
+      </MediaHero>
+
       <main className="home">
         <TextImageSection title={'Section Title'} imgPath="./layouts/placeholder2.jpg">
           <>
