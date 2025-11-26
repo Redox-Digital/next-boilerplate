@@ -11,6 +11,7 @@ type Props = {
   className?: string;
   blank?: boolean;
   title?: string;
+  type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
   children?: string | React.ReactNode;
 };
@@ -25,6 +26,7 @@ export default function Button({
   className,
   blank,
   title,
+  type = 'button',
   onClick,
 }: Props) {
   return href ? (
@@ -41,7 +43,7 @@ export default function Button({
     </Link>
   ) : (
     <button
-      type="button"
+      type={type}
       className={`${css.btn} ${small && css.small} ${outline && css.outline} ${
         dark && css.dark
       } ${className}`}

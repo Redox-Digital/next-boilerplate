@@ -142,7 +142,7 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
           >
             <div className={style.gallery__overlay__drop} onClick={hideOverlay} />
             <figure className={style.image}>
-              <i className="fa-solid fa-spinner" />
+              <i className="icon-spinner9" />
 
               <Image
                 src={`${process.env.api}/assets/${displayedRealisations?.[realArrPos].image}` || ''}

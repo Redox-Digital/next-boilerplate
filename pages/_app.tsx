@@ -12,7 +12,7 @@ import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 // Example of local font usage
-const jakarta = localFont({ src: '../public/fonts/jakarta/PlusJakartaSans-VariableFont_wght.ttf' });
+const icomoon = localFont({ src: '../public/fonts/icomoon/icomoon.ttf' });
 
 export default function App({ Component, pageProps }: AppProps) {
   // const gKey = 'G-K20DW8RS8P';
@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         {`
           :root {
             --inter-font: ${inter.style.fontFamily};
-            --jakarta-font: ${jakarta.style.fontFamily};
+            --icomoon-font: ${icomoon.style.fontFamily};
           }
         `}
       </style>

@@ -1,5 +1,4 @@
 import css from './Home.module.scss';
-import Head from 'next/head';
 import Hero from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';

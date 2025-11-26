@@ -1,0 +1,52 @@
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: var(--icomoon-font) !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-envelop:before {
+  content: '\e901';
+}
+.icon-phone:before {
+  content: '\e942';
+}
+.icon-phone-hang-up:before {
+  content: '\e943';
+}
+.icon-spinner9:before {
+  content: '\e982';
+}
+.icon-sphere:before {
+  content: '\e9c9';
+}
+.icon-warning:before {
+  content: '\ea07';
+}
+.icon-checkbox-checked:before {
+  content: '\ea52';
+}
+.icon-mail:before {
+  content: '\ea83';
+}
+.icon-linkedin:before {
+  content: '\e902';
+  color: #0077b5;
+}
+.icon-instagram:before {
+  content: '\e903';
+  color: #e4405f;
+}
+.icon-facebook:before {
+  content: '\e900';
+  color: #1877f2;
+}

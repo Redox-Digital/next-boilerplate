@@ -1,16 +1,30 @@
 .formSection {
-  flex-direction: column;
-  gap: var(--vert-spacing);
-
-  > h2 {
-    text-align: center;
-  }
-
-  form {
-    width: 100%;
+  > .container {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--md) * 2);
+    width: 100%;
+    max-width: var(--max-container-width);
+    margin-inline: auto;
+
+    gap: var(--vert-spacing);
+
+    > h2 {
+      text-align: center;
+    }
+
+    > form {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--sm) var(--md);
+
+      > .bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--md);
+      }
+    }
   }
 }
 
@@ -26,20 +40,14 @@
   }
 }
 
-.form__bottom {
-  display: flex;
-  flex-direction: column;
-  gap: var(--md);
-}
-
 .status {
   &__success > i {
     margin-right: 5px;
-    color: green;
+    color: var(--success);
   }
   &__error > i {
     margin-right: 5px;
-    color: rgb(104, 0, 0);
+    color: var(--danger);
   }
 
   &__sending {
@@ -50,14 +58,14 @@
     > i {
       margin-right: 5px;
       animation: spin 1.5s infinite linear;
+      color: var(--info);
     }
   }
 }
 
 @media screen and (min-width: 768px) {
-  .formSection form {
+  .formSection > .container > form > .bottom {
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--md);
+    align-items: center;
   }
 }

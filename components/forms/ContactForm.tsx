@@ -1,10 +1,10 @@
-import style from './ContactForm.module.scss';
-import inputStyle from './Inputs.module.scss';
-import btn from '../navigation/Button.module.scss';
+import css from './ContactForm.module.scss';
 import Link from 'next/link';
-import { FormEventHandler, RefObject, useState } from 'react';
+import { useState } from 'react';
 import TextInput from './TextInput';
 import React from 'react';
+import SelectInput from './SelectInput';
+import Button from '../navigation/Button';
 
 export default function ContactForm() {
   const [status, setStatus] = useState<'sending' | 'success' | 'error' | 'cooldown'>();
@@ -65,9 +65,9 @@ export default function ContactForm() {
 
   return (
     <>
-      <section className={`light ${style.formSection}`}>
-        <h2>Formulaire de contact</h2>
-        <div className="container">
+      <section className={css.formSection}>
+        <div className={css.container}>
+          <h2>Formulaire de contact</h2>
           <form onSubmit={handleSubmit} id="form">
             <TextInput
               changeHandler={handleChange}
@@ -114,14 +114,17 @@ export default function ContactForm() {
               Téléphone
             </TextInput>
 
-            <label htmlFor="type" className={inputStyle.input}>
-              <select id="type" name="type" onChange={handleChange}>
-                <option value="particulier">Particulier</option>
-                <option value="collectivite">Collectivité</option>
-                <option value="entreprise">Entreprise</option>
-              </select>
-              <span>Type de client</span>
-            </label>
+            <SelectInput
+              id="type"
+              changeHandler={handleChange}
+              options={[
+                { id: 'particulier', label: 'Particulier', default: true },
+                { id: 'collectivite', label: 'Collectivité' },
+                { id: 'entreprise', label: 'Entreprise' },
+              ]}
+            >
+              Type de client
+            </SelectInput>
 
             <TextInput
               type={'textarea'}
@@ -134,28 +137,21 @@ export default function ContactForm() {
               Message
             </TextInput>
 
-            <div className={style.form__bottom}>
-              <button
-                aria-label="Envoyer votre demande"
-                type="submit"
-                className={`${btn.btn} ${btn.btn__big}`}
-              >
-                Envoyer
-              </button>
+            <div className={css.bottom}>
+              <Button type="submit">Envoyer</Button>
 
               {status === 'success' && (
-                <small className={style.status__success}>
-                  <i className="fa-solid fa-circle-check"></i> Nous vous remercions pour votre
-                  demande, et la traiterons dans les plus brefs délais. Vous avez reçu un e-mail de
+                <small className={css.status__success}>
+                  <i className="icon-checkbox-checked"></i> Nous vous remercions pour votre demande,
+                  et la traiterons dans les plus brefs délais. Vous avez reçu un e-mail de
                   confirmation.
                 </small>
               )}
 
               {status === 'error' && (
-                <small className={style.status__error}>
-                  <i className="fa-solid fa-triangle-exclamation"></i> Une erreur est survenue,
-                  votre demande n&rsquo;a pas pu être envoyée. Merci de contrôler votre adresse
-                  e-mail et de réessayer.
+                <small className={css.status__error}>
+                  <i className="icon-warning"></i> Une erreur est survenue, votre demande n&rsquo;a
+                  pas pu être envoyée. Merci de contrôler votre adresse e-mail et de réessayer.
                   <br />
                   Le cas échéant, vous pouvez nous transmettre votre demande à l&rsquo;adresse
                   suivante :{' '}
@@ -166,13 +162,13 @@ export default function ContactForm() {
               )}
 
               {status === 'sending' && (
-                <small className={style.status__sending}>
-                  <i className="fa-solid fa-spinner"></i> En cours d&rsquo;envoi...
+                <small className={css.status__sending}>
+                  <i className="icon-spinner9"></i> En cours d&rsquo;envoi...
                 </small>
               )}
 
               {status === 'cooldown' && (
-                <small className={style.status__sending}>
+                <small className={css.status__sending}>
                   Afin d&rsquo;éviter le spam, nous vous demandons de patienter quelques instants
                   avant de renvoyer votre demande.
                 </small>
