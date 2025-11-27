@@ -1,8 +1,10 @@
+import { LogoWall } from '@/components/content/LogoList';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import { TextHero } from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
+import { partners } from '@/constants/projectSpecifics';
 
 export default function About() {
   const [pageTitle, pageDesc] = [
@@ -42,6 +44,7 @@ export default function About() {
             <Button href={'/'}>Retour à l&apos;accueil</Button>
           </>
         </TextImageSection>
+        <LogoWall title="Our Partners" logos={partners} />
       </main>
     </>
   );

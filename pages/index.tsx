@@ -5,7 +5,10 @@ import RichCTA, { BannerCTA } from '@/components/content/CTA';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import MediaHero from '@/components/layouts/Hero';
-import LogoBanner, { LogoProps, LogoWall } from '@/components/content/LogoList';
+import LogoBanner, { LogoWall } from '@/components/content/LogoList';
+import { partners } from '@/constants/projectSpecifics';
+import { productCards } from '@/constants/projectSpecifics';
+import CardsSection from '@/components/layouts/CardsSection';
 
 export default function Home() {
   const structuredData = generateStructuredData({
@@ -21,28 +24,6 @@ export default function Home() {
       },
     ],
   });
-
-  const partners: LogoProps[] = [
-    {
-      name: 'Partner #1',
-      img: '/logos/logoipsum.svg',
-      url: 'https://redoxdigital.ch',
-    },
-    {
-      name: 'Partner #2',
-      img: '/logos/favicon.svg',
-      url: 'https://redoxdigital.ch',
-    },
-    {
-      name: 'Partner #3',
-      img: '/logos/favicon.svg',
-    },
-    {
-      name: 'Partner #4',
-      img: '/logos/logoipsum.svg',
-      url: 'https://redoxdigital.ch',
-    },
-  ];
 
   return (
     <>
@@ -67,10 +48,27 @@ export default function Home() {
         </>
       </MediaHero>
 
-      <LogoBanner logos={partners} showLabel />
-      <LogoWall title="Partners" logos={partners} />
-
       <main className="home">
+        <BannerCTA
+          title={'Banner CTA Title'}
+          backgroundImageUrl="./layouts/placeholder1.jpg"
+          pictoUrl="./pictograms/quality.svg"
+          action={{
+            label: `${process.env.phone}`,
+            href: `tel:${process.env.phone}`,
+            secondary: true,
+          }}
+        />
+
+        <CardsSection
+          title={'Nos produits'}
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue."
+          cards={productCards}
+          action={{ label: 'Découvrez notre gamme de produits', href: '/services' }}
+          hideAction
+          hideDesc
+        />
+
         <TextImageSection
           surtitle="Surtitle"
           title={'Section Title'}
@@ -90,12 +88,7 @@ export default function Home() {
           </>
         </TextImageSection>
 
-        <BannerCTA
-          title={'Banner CTA Title'}
-          backgroundImageUrl="./layouts/placeholder1.jpg"
-          pictoUrl="./pictograms/quality.svg"
-          action={{ label: `${process.env.phone}`, href: `tel:${process.env.phone}` }}
-        />
+        <LogoBanner logos={partners} showLabel animated />
 
         <TextImageSection
           title={'Section Title'}

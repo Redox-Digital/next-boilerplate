@@ -1,13 +1,7 @@
 import Link from 'next/link';
 import css from './LogoList.module.scss';
 import Image from 'next/image';
-
-export type LogoProps = {
-  name: string;
-  img: string;
-  url?: string;
-  showLabel?: boolean;
-};
+import { LogoProps } from '@/types/Types';
 
 type LogoWallProps = {
   title?: string;

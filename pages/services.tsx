@@ -1,9 +1,11 @@
 import { MultiCTA } from '@/components/content/CTA';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
+import CardsSection from '@/components/layouts/CardsSection';
 import { TextHero } from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
+import { productCards } from '@/constants/projectSpecifics';
 
 export default function Services() {
   const [pageTitle, pageDesc] = [
@@ -47,6 +49,14 @@ export default function Services() {
             <Button href={'/'}>Retour à l&apos;accueil</Button>
           </>
         </TextImageSection>
+
+        <CardsSection
+          title={'Une large gamme de produits'}
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue."
+          cards={productCards}
+          action={{ label: 'Découvrez notre gamme de produits', href: '/services' }}
+        />
+
         <TextImageSection
           id="subservice-2"
           title={'Section Title'}
@@ -91,7 +101,7 @@ export default function Services() {
               description:
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum.',
               backgroundImageUrl: '/layouts/placeholder1.jpg',
-              action: { label: 'Nos bureaux', href: '/contact' },
+              action: { label: 'Nos bureaux', href: '/contact', secondary: true },
             },
             {
               title: 'Nos services',
@@ -99,7 +109,7 @@ export default function Services() {
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum.',
               backgroundImageUrl: '/layouts/placeholder2.jpg',
 
-              action: { label: 'SAV', href: '/services' },
+              action: { label: 'SAV', href: '/services', secondary: true },
             },
           ]}
         />
