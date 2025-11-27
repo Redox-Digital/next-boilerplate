@@ -3,7 +3,7 @@ import Link from 'next/link';
 import logo from '/public/logos/logoipsum.svg';
 import css from './Footer.module.scss';
 import { mainNavLinks, socialLinks } from '@/constants/navigation';
-import { openingHours } from '@/constants/address';
+import { openingHours } from '@/constants/projectSpecifics';
 
 export default function Footer() {
   return (

@@ -3,18 +3,18 @@ import css from './CTA.module.scss';
 import btnCSS from '../navigation/Button.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ActionType } from '@/types/Types';
 
 type CTAProps = {
   title: string;
   description?: string;
   backgroundImageUrl?: string;
   overlayOpacity?: number;
-  action?: { label: string; href: string };
+  action?: ActionType;
 };
 
 interface RichCTAProps extends CTAProps {
   overlayGradient?: boolean;
-  btnSecondary?: boolean;
   subElement?: boolean;
 }
 
@@ -25,7 +25,6 @@ export default function RichCTA({
   overlayGradient,
   backgroundImageUrl,
   action,
-  btnSecondary,
   subElement,
 }: RichCTAProps) {
   return (
@@ -42,11 +41,13 @@ export default function RichCTA({
         <p>{description}</p>
         {action &&
           (!subElement ? (
-            <Button secondary={btnSecondary} href={action.href}>
+            <Button secondary={action.secondary} href={action.href}>
               {action.label}
             </Button>
           ) : (
-            <span className={`${btnCSS.btn} ${btnCSS.secondary}`}>{action.label}</span>
+            <span className={`${btnCSS.btn} ${action.secondary && btnCSS.secondary}`}>
+              {action.label}
+            </span>
           ))}
       </div>
     </section>
@@ -63,7 +64,6 @@ export function MultiCTA({ cards }: MultiCTAProps) {
       {cards.map((card, i) => (
         <Link key={i} href={card.action?.href || '#'}>
           <RichCTA
-            btnSecondary
             title={card.title}
             description={card.description}
             action={card.action}
@@ -99,7 +99,7 @@ export function BannerCTA({
         <h4>{title}</h4>
 
         {action && (
-          <Button href={action.href} secondary>
+          <Button href={action.href} secondary={action.secondary}>
             {action.label}
           </Button>
         )}

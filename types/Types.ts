@@ -1,3 +1,19 @@
+export type ActionType = { label: string; href: string; secondary?: boolean };
+
+export type CardType = {
+  title: string;
+  description?: string;
+  picto?: string;
+  action?: ActionType;
+};
+
+export type LogoProps = {
+  name: string;
+  img: string;
+  url?: string;
+  showLabel?: boolean;
+};
+
 export type DirectusBlock = {
   id: string;
   // DEV : manque Quoteblock
