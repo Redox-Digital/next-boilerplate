@@ -2,11 +2,10 @@ import css from './Home.module.scss';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
 import RichCTA, { BannerCTA } from '@/components/content/CTA';
-import ContactForm from '@/components/forms/ContactForm';
-import Map from '@/components/content/Map';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import MediaHero from '@/components/layouts/Hero';
+import LogoBanner, { LogoProps, LogoWall } from '@/components/content/LogoList';
 
 export default function Home() {
   const structuredData = generateStructuredData({
@@ -22,6 +21,28 @@ export default function Home() {
       },
     ],
   });
+
+  const partners: LogoProps[] = [
+    {
+      name: 'Partner #1',
+      img: '/logos/logoipsum.svg',
+      url: 'https://redoxdigital.ch',
+    },
+    {
+      name: 'Partner #2',
+      img: '/logos/favicon.svg',
+      url: 'https://redoxdigital.ch',
+    },
+    {
+      name: 'Partner #3',
+      img: '/logos/favicon.svg',
+    },
+    {
+      name: 'Partner #4',
+      img: '/logos/logoipsum.svg',
+      url: 'https://redoxdigital.ch',
+    },
+  ];
 
   return (
     <>
@@ -45,6 +66,9 @@ export default function Home() {
           <Button href="/a-propos">À propos</Button>
         </>
       </MediaHero>
+
+      <LogoBanner logos={partners} showLabel />
+      <LogoWall title="Partners" logos={partners} />
 
       <main className="home">
         <TextImageSection
@@ -70,7 +94,7 @@ export default function Home() {
           title={'Banner CTA Title'}
           backgroundImageUrl="./layouts/placeholder1.jpg"
           pictoUrl="./pictograms/quality.svg"
-          btn={{ label: `${process.env.phone}`, href: `tel:${process.env.phone}` }}
+          action={{ label: `${process.env.phone}`, href: `tel:${process.env.phone}` }}
         />
 
         <TextImageSection
@@ -99,11 +123,8 @@ export default function Home() {
           description="Nous sommes là pour vous aider."
           overlayOpacity={0.5}
           backgroundImageUrl="./layouts/placeholder1.jpg"
-        >
-          <Button href="/contact" outline secondary>
-            Nous contacter
-          </Button>
-        </RichCTA>
+          action={{ label: 'Nous contacter', href: '/contact' }}
+        />
 
         {/* <InstagramGallery /> */}
       </main>
