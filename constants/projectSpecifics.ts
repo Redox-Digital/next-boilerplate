@@ -1,4 +1,4 @@
-import { CardType, LogoProps } from '@/types/Types';
+import { AccordionEltType, CardType, LogoProps } from '@/types/Types';
 
 type OpeningHour = {
   day: string;
@@ -154,7 +154,7 @@ export const reviews: ReviewType[] = [
     score: 0,
   },
   {
-    name: 'Michel #1',
+    name: 'Michel #6',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
     maxScore: 5,
     score: 2,

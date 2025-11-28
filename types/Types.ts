@@ -45,3 +45,10 @@ export type StructureDataType = {
   services?: ServiceStructuredDataType[];
   articles?: ArticleStructuredDataType[];
 };
+
+export type AccordionEltType = {
+  id: string;
+  title: string;
+  body?: React.ReactNode;
+  initOpen?: boolean;
+};

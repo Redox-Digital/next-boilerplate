@@ -1,0 +1,144 @@
+.accordionSection > div {
+  gap: var(--lg);
+  max-width: var(--max-block-width);
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md);
+}
+
+.accordion {
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid var(--black);
+  width: 100%;
+
+  background-color: blue;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    cursor: pointer;
+
+    background-color: green;
+  }
+
+  .titles {
+    padding-top: var(--padding);
+
+    @media screen and (min-width: 900px) {
+      padding-top: var(--margin);
+    }
+
+    display: flex;
+    flex-direction: row;
+    gap: var(--margin);
+    align-self: stretch;
+    align-items: center;
+
+    > h4 {
+      width: 100%;
+      font-weight: 600;
+      line-height: 1.2em;
+
+      @media screen and (min-width: 900px) {
+      }
+    }
+
+    > .icon {
+      width: var(--md);
+      height: var(--md);
+      position: relative;
+
+      > span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--black);
+
+        position: absolute;
+        top: 50%;
+        transition: transform ease-in-out 0.3s;
+
+        &:last-of-type {
+          transform: rotate(-90deg);
+          transform-origin: center;
+        }
+      }
+
+      &.open {
+        > span {
+          &:first-of-type {
+            top: 50%;
+          }
+
+          &:last-of-type {
+            transform: rotate(0deg);
+            transform-origin: center;
+
+            transition: transform ease-in-out 0.3s;
+          }
+        }
+      }
+    }
+  }
+
+  // TO DO
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 50px;
+    align-self: stretch;
+    height: fit-content;
+    max-height: 2000px;
+    padding-block: var(--padding);
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateY(0px);
+    overflow: hidden;
+    // max-width: calc(100% - var(--margin) - 30px);
+    color: var(--dark-gray);
+
+    @media screen and (min-width: 900px) {
+      padding-bottom: var(--margin);
+    }
+
+    &__closed {
+      max-height: 0px;
+      transform: translateY(25px);
+      opacity: 0;
+      padding-top: 0;
+
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+.toggle {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
+
+  &__new {
+    transform: rotate(-90deg);
+    transition: transform 0.3s ease-in-out;
+    color: var(--black);
+    font-size: 30px;
+
+    &__closed {
+      transform: rotate(-180deg);
+      transition: transform 0.3s ease-in-out;
+    }
+  }
+}
