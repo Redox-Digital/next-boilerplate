@@ -10,6 +10,8 @@ type Props = {
   action?: ActionType;
   hideDesc?: boolean;
   hideAction?: boolean;
+  altCards?: boolean;
+  bigCards?: boolean;
 };
 
 export default function CardsSection({
@@ -19,6 +21,8 @@ export default function CardsSection({
   action,
   hideDesc,
   hideAction,
+  altCards,
+  bigCards,
 }: Props) {
   return (
     <section className={`${css.section}`}>
@@ -27,7 +31,7 @@ export default function CardsSection({
           <h2>{title}</h2>
           {description && <p>{description}</p>}
         </div>
-        <ul className={css.grid}>
+        <ul className={`${css.grid} ${altCards && css.altCards} ${bigCards && css.bigCards}`}>
           {cards.map((card) => (
             <li key={card.title}>
               <SimpleCard
