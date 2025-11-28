@@ -1,10 +1,11 @@
 import { LogoWall } from '@/components/content/LogoList';
 import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
+import CardsSection from '@/components/layouts/CardsSection';
 import { TextHero } from '@/components/layouts/Hero';
 import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
-import { partners } from '@/constants/projectSpecifics';
+import { partners, valuesCards } from '@/constants/projectSpecifics';
 
 export default function About() {
   const [pageTitle, pageDesc] = [
@@ -44,6 +45,16 @@ export default function About() {
             <Button href={'/'}>Retour à l&apos;accueil</Button>
           </>
         </TextImageSection>
+
+        <CardsSection
+          title={'Une large gamme de produits'}
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue."
+          cards={valuesCards}
+          action={{ label: 'Découvrez notre gamme de produits', href: '/services' }}
+          altCards
+          bigCards
+        />
+
         <LogoWall title="Our Partners" logos={partners} />
       </main>
     </>

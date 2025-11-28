@@ -6,9 +6,11 @@ import Metadata from '@/components/content/Metadata';
 import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import MediaHero from '@/components/layouts/Hero';
 import LogoBanner, { LogoWall } from '@/components/content/LogoList';
-import { partners } from '@/constants/projectSpecifics';
+import { partners, reviews } from '@/constants/projectSpecifics';
 import { productCards } from '@/constants/projectSpecifics';
 import CardsSection from '@/components/layouts/CardsSection';
+import CarrouselSection from '@/components/layouts/carrousel/EmblaCarrousel';
+import ReviewBlock from '@/components/content/ReviewBlock';
 
 export default function Home() {
   const structuredData = generateStructuredData({
@@ -110,6 +112,15 @@ export default function Home() {
             <Button href={'/a-propos'}>Read more</Button>
           </>
         </TextImageSection>
+
+        <CarrouselSection
+          title="Témoignages"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        >
+          {reviews.map((r, key) => (
+            <ReviewBlock key={key} {...r} />
+          ))}
+        </CarrouselSection>
 
         <RichCTA
           title="Contactez-nous"
