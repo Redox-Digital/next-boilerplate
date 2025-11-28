@@ -1,0 +1,23 @@
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sm);
+
+  > p {
+    font-weight: 600;
+  }
+
+  .score {
+    display: flex;
+    flex-direction: row;
+    // gap: var(--xs);
+
+    font-size: var(--fs-h3);
+
+    color: var(--gray);
+
+    > span.marked {
+      color: var(--primary);
+    }
+  }
+}
