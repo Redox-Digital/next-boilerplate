@@ -93,3 +93,70 @@ export const productCards: CardType[] = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros non orci pharetra interdum.',
   },
 ];
+
+export const valuesCards: CardType[] = [
+  {
+    title: 'Value #1',
+    picto: '/logos/favicon.svg',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros non orci pharetra interdum.',
+  },
+  {
+    title: 'Value #2',
+    picto: '/logos/favicon.svg',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros non orci pharetra interdum.',
+  },
+  {
+    title: 'Value #3',
+    picto: '/logos/favicon.svg',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros non orci pharetra interdum.',
+  },
+];
+
+export type ReviewType = {
+  name: string;
+  text?: string;
+  maxScore: number;
+  score: number;
+};
+
+export const reviews: ReviewType[] = [
+  {
+    name: 'Michel #1',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 4,
+  },
+  {
+    name: 'Michel #2',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 5,
+  },
+  {
+    name: 'Michel #3',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 3,
+  },
+  {
+    name: 'Michel #4',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 1,
+  },
+  {
+    name: 'Michel #5',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 0,
+  },
+  {
+    name: 'Michel #1',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in eros  non orci pharetra interdum. Maecenas ornare pretium eros. Proin  facilisis congue leo sed congue.',
+    maxScore: 5,
+    score: 2,
+  },
+];
