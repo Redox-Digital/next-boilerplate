@@ -55,7 +55,7 @@ function AccordionElt({ id, title, body, initOpen }: AccordionEltType) {
           </div>
         </div>
       </label>
-      <div className={`${css.accordion__body} ${open || css.accordion__body__closed}`}>{body}</div>
+      <div className={`${css.body} ${open || css.closed}`}>{body}</div>
     </article>
   );
 }
