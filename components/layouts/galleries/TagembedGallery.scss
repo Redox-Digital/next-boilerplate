@@ -1,0 +1,11 @@
+.gallery {
+  .tagembedFrame {
+    width: 100%;
+    max-width: var(--max-container-width);
+    margin-inline: auto;
+    height: 100%;
+    min-height: 150vh;
+    // overflow: auto;
+    border: none;
+  }
+}

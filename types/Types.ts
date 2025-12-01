@@ -52,3 +52,18 @@ export type AccordionEltType = {
   body?: React.ReactNode;
   initOpen?: boolean;
 };
+
+export type DirectusFileType = {
+  id: string;
+  title: string;
+  description?: string;
+  type: string;
+  width: number;
+  height: number;
+};
+
+export type DirectusGalleryApiType = {
+  id: number;
+  order: number;
+  directus_files_id: DirectusFileType;
+};

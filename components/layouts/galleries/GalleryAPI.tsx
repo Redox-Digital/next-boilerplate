@@ -1,31 +1,25 @@
-import ImageGallery from '../content/ImageGallery';
+import ImageGallery from './GalleryImage';
 import Image from 'next/image';
-import style from './GalleryAPI.module.scss';
+import css from './Galleries.module.scss';
 import btn from '../navigation/Button.module.scss';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import arrowDown from '/public/pictograms/arrow-down.svg';
-
-type Realisation = {
-  id: number;
-  description: string;
-  image: string;
-  category: 'individual' | 'collectivity' | 'enterprise';
-};
+import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
 
 type Props = {
-  surtitle: string;
   title: string;
-  slug: 'particuliers' | 'collectivites' | 'entreprises';
+  description?: string;
+  apiUrl: string;
 };
 
-export default function GalleryAPI({ title, surtitle, slug }: Props) {
-  const [realisationsApi, setRealisations] = useState<Realisation[] | null>(null);
+export default function GalleryAPI({ title, description, apiUrl }: Props) {
+  const [mediaApi, setMedia] = useState<DirectusGalleryApiType[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
 
-  const galleryLength = realisationsApi?.length || 0;
-  const paginationStep = 9;
+  const galleryLength = mediaApi?.length || 0;
+  // const paginationStep = 9;
 
-  const [pagination, setPagination] = useState<number>(paginationStep);
+  // const [pagination, setPagination] = useState<number>(paginationStep);
   const [fullImageId, setFullImageId] = useState<number>();
   const [realArrPos, setRealArrPos] = useState<number>();
 
@@ -33,20 +27,20 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
     try {
       setLoading(true);
       // Fetching all Gallery objects
-      fetch(`${process.env.api}/gallery`)
+      fetch(apiUrl)
         .then((res) => res.json())
-        .then((realisations) => {
-          setRealisations(realisations.data);
-          setLoading(false);
+        .then((media) => {
+          setMedia(media.data.gallery);
         });
     } catch (err) {
       console.warn(err);
+    } finally {
       setLoading(false);
     }
-  }, [slug]);
+  }, [apiUrl]);
 
-  const displayedRealisations = realisationsApi;
-
+  // const displayedRealisations = realisationsApi;
+  /*
   const keyboardNavigation = (evt: React.KeyboardEvent) => {
     switch (evt.key) {
       case 'Escape':
@@ -71,16 +65,18 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
       pagination + paginationStep <= galleryLength ? pagination + paginationStep : galleryLength
     );
   };
+    */
 
   const showOverlay = (imgId: number) => {
-    if (displayedRealisations)
-      setRealArrPos(displayedRealisations.findIndex((real) => real.id === imgId));
+    if (mediaApi) console.log(imgId);
+    // setRealArrPos(mediaApi.findIndex((real) => real.id === imgId));
   };
 
   const hideOverlay = () => {
     setRealArrPos(undefined);
   };
 
+  /*
   const nextImg = () => {
     // setFullImageId(realisation.nextId);
     if (realArrPos !== undefined && realArrPos >= galleryLength - 1) {
@@ -103,45 +99,42 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = 'auto');
   }, [realArrPos]);
-
+*/
   return (
-    <section className={`${style.gallery} light`}>
+    <section className={`${css.gallery}`}>
       <div className="container">
-        <div className={style.service__titles}>
-          <h5>{surtitle}</h5>
+        <div className={css.service__titles}>
           <h2>{title}</h2>
+          {description && <p>{description}</p>}
         </div>
-        <div className={style.gallery__images}>
+        <div className={css.gallery__images}>
           {isLoading && <p>Chargement de la galerie.</p>}
-          {displayedRealisations &&
-            displayedRealisations
-              .map((realisation) => (
+          {
+            mediaApi &&
+              mediaApi.map((media) => (
                 <ImageGallery
-                  key={realisation.id}
-                  id={realisation.id}
-                  image={realisation.image}
-                  description={realisation.description}
+                  key={media.directus_files_id.id}
+                  order={media.order}
                   showImg={showOverlay}
+                  {...media.directus_files_id}
                 />
               ))
-              .slice(-1 * pagination)
-              .reverse()}
+            // .slice(-1 * pagination)
+          }
 
-          {!displayedRealisations && (
-            <p>Un problème est survenu. Impossible de charger les réalisations.</p>
-          )}
+          {!mediaApi && <p>Un problème est survenu. Impossible de charger les réalisations.</p>}
         </div>
 
-        {realArrPos !== undefined && (
+        {/* realArrPos !== undefined && (
           <div
-            className={style.gallery__overlay}
+            className={css.gallery__overlay}
             aria-hidden
             ref={(div) => div?.focus()}
             onKeyDown={(evt) => keyboardNavigation(evt)}
             tabIndex={-1}
           >
-            <div className={style.gallery__overlay__drop} onClick={hideOverlay} />
-            <figure className={style.image}>
+            <div className={css.gallery__overlay__drop} onClick={hideOverlay} />
+            <figure className={css.image}>
               <i className="icon-spinner9" />
 
               <Image
@@ -151,25 +144,25 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
                 height={1500}
               />
 
-              <figcaption className={style.gallery__overlay__img}>
+              <figcaption className={css.gallery__overlay__img}>
                 <small>{displayedRealisations?.[realArrPos].description}</small>
               </figcaption>
             </figure>
-            <button type="button" onClick={hideOverlay} className={style.btn__close}>
+            <button type="button" onClick={hideOverlay} className={css.btn__close}>
               Fermer
             </button>
 
-            <button type="button" onClick={prevImg} className={style.btn__next}>
+            <button type="button" onClick={prevImg} className={css.btn__next}>
               <Image src={arrowDown} alt={''}></Image>
             </button>
 
-            <button type="button" onClick={nextImg} className={style.btn__prev}>
+            <button type="button" onClick={nextImg} className={css.btn__prev}>
               <Image src={arrowDown} alt={''}></Image>
             </button>
           </div>
-        )}
+        ) */}
 
-        {pagination < galleryLength && (
+        {/* pagination < galleryLength && (
           <button
             className={`${btn.btn} ${btn.btn__secondary}`}
             type="button"
@@ -177,7 +170,7 @@ export default function GalleryAPI({ title, surtitle, slug }: Props) {
           >
             En voir plus
           </button>
-        )}
+        ) */}
       </div>
     </section>
   );

@@ -75,9 +75,9 @@ export default function Header() {
             {mainNavLinks.map((link: NavLinkType) => (
               <>
                 {link.subLinks && link.subLinks.length !== 0 ? (
-                  <DropdownMenu sublinks={link.subLinks}>
+                  <DropdownMenu sublinks={link.subLinks} key={link.url}>
                     {/* Head link */}
-                    <Link key={link.url} href={link.url} className={css.submenu}>
+                    <Link href={link.url} className={css.submenu}>
                       {link.label}
                     </Link>
                   </DropdownMenu>
@@ -142,24 +142,28 @@ function MobileMenu({ open, links, toggleMenu }: MobileMenuProps) {
           {links?.map((link: NavLinkType) => (
             <>
               {link.subLinks ? (
-                <div className={css.submenu}>
-                  <Link key={link.url} href={link.url} onClick={toggleMenu}>
+                <div className={css.submenu} key={`${link.url}-mobile`}>
+                  <Link href={link.url} onClick={toggleMenu}>
                     {link.label}
                   </Link>
                   <span className={css.sublinks} key={link.url}>
                     {link.subLinks.map((subLink: NavLinkType) => (
-                      <Link key={subLink.url} href={subLink.url} onClick={toggleMenu}>
+                      <Link
+                        key={`${subLink.url}-mobileSubmenu`}
+                        href={subLink.url}
+                        onClick={toggleMenu}
+                      >
                         {subLink.label}
                       </Link>
                     ))}
                   </span>
                 </div>
               ) : link.btn ? (
-                <Button key={link.url} href={link.url} small onClick={toggleMenu}>
+                <Button key={`${link.url}-mobile`} href={link.url} small onClick={toggleMenu}>
                   {link.label}
                 </Button>
               ) : (
-                <Link key={link.url} href={link.url} onClick={toggleMenu}>
+                <Link key={`${link.url}-mobile`} href={link.url} onClick={toggleMenu}>
                   {link.label}
                 </Link>
               )}
