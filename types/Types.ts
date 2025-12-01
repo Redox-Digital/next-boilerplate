@@ -63,7 +63,7 @@ export type DirectusFileType = {
 };
 
 export type DirectusGalleryApiType = {
-  id: number;
-  order: number;
+  id: string;
+  order?: number;
   directus_files_id: DirectusFileType;
 };

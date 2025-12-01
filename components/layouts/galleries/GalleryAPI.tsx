@@ -1,7 +1,7 @@
-import ImageGallery from './GalleryImage';
+import SquareImageGallery from './GalleryImage';
 import Image from 'next/image';
 import css from './Galleries.module.scss';
-import btn from '../navigation/Button.module.scss';
+import btnCss from '@/components/navigation/Button.module.scss';
 import { useEffect, useState } from 'react';
 import arrowDown from '/public/pictograms/arrow-down.svg';
 import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
@@ -9,19 +9,15 @@ import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
 type Props = {
   title: string;
   description?: string;
+  viewer?: boolean;
+  pagination?: number;
   apiUrl: string;
 };
 
-export default function GalleryAPI({ title, description, apiUrl }: Props) {
+export default function SquareGallery({ title, description, viewer, pagination, apiUrl }: Props) {
+  // ### GET MEDIA FROM API ###
   const [mediaApi, setMedia] = useState<DirectusGalleryApiType[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
-
-  const galleryLength = mediaApi?.length || 0;
-  // const paginationStep = 9;
-
-  // const [pagination, setPagination] = useState<number>(paginationStep);
-  const [fullImageId, setFullImageId] = useState<number>();
-  const [realArrPos, setRealArrPos] = useState<number>();
 
   useEffect(() => {
     try {
@@ -38,9 +34,39 @@ export default function GalleryAPI({ title, description, apiUrl }: Props) {
       setLoading(false);
     }
   }, [apiUrl]);
+  // ### .GET MEDIA ###
 
-  // const displayedRealisations = realisationsApi;
-  /*
+  // ### PAGINATION ###
+  const paginationStep = pagination || 0;
+  const [nbDisplayedItem, setNbDisplayedItem] = useState<number>(paginationStep);
+
+  // Work object (used for pagination), stored in reversed order (then re-reversed at display)
+  // The gallery files must habe an `order` field.
+  const displayedMedia = mediaApi.sort((a, b) => (a.order && b.order ? b.order - a.order : 0));
+
+  const increasePagination = () => {
+    setNbDisplayedItem(
+      nbDisplayedItem + paginationStep < mediaApi.length
+        ? nbDisplayedItem + paginationStep
+        : mediaApi.length
+    );
+  };
+  // ### .PAGINATION ###
+
+  // ### IMAGE FULL-SIZE VIEWER ###
+  const [fullImage, setFullImage] = useState<DirectusGalleryApiType>();
+  const [arrayCursor, setArrayCursor] = useState<number>();
+
+  const showOverlay = (file: DirectusGalleryApiType) => {
+    setFullImage(file);
+    console.log(file ? mediaApi.indexOf(file) : undefined);
+  };
+
+  const hideOverlay = () => {
+    setFullImage(undefined);
+    setArrayCursor(undefined);
+  };
+
   const keyboardNavigation = (evt: React.KeyboardEvent) => {
     switch (evt.key) {
       case 'Escape':
@@ -60,46 +86,27 @@ export default function GalleryAPI({ title, description, apiUrl }: Props) {
     }
   };
 
-  const increasePagination = () => {
-    setPagination(
-      pagination + paginationStep <= galleryLength ? pagination + paginationStep : galleryLength
-    );
-  };
-    */
-
-  const showOverlay = (imgId: number) => {
-    if (mediaApi) console.log(imgId);
-    // setRealArrPos(mediaApi.findIndex((real) => real.id === imgId));
-  };
-
-  const hideOverlay = () => {
-    setRealArrPos(undefined);
-  };
-
-  /*
   const nextImg = () => {
-    // setFullImageId(realisation.nextId);
-    if (realArrPos !== undefined && realArrPos >= galleryLength - 1) {
-      setRealArrPos(0);
-    } else if (realArrPos !== undefined) {
-      setRealArrPos(realArrPos + 1);
+    if (fullImage) {
+      if (mediaApi.indexOf(fullImage) + 1 < mediaApi.length)
+        setFullImage(mediaApi[mediaApi.indexOf(fullImage) + 1]);
+      else setFullImage(mediaApi[0]);
     }
   };
 
   const prevImg = () => {
-    if (realArrPos !== undefined && realArrPos <= 0) {
-      setRealArrPos(galleryLength - 1);
-    } else if (realArrPos !== undefined) {
-      setRealArrPos(realArrPos - 1);
+    if (fullImage) {
+      if (mediaApi.indexOf(fullImage) - 1 < 0) setFullImage(mediaApi[mediaApi.length - 1]);
+      else setFullImage(mediaApi[mediaApi.indexOf(fullImage) - 1]);
     }
   };
 
   useEffect(() => {
-    realArrPos !== undefined
+    arrayCursor !== undefined
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = 'auto');
-  }, [realArrPos]);
-*/
+  }, [arrayCursor]);
+
   return (
     <section className={`${css.gallery}`}>
       <div className="container">
@@ -109,23 +116,26 @@ export default function GalleryAPI({ title, description, apiUrl }: Props) {
         </div>
         <div className={css.gallery__images}>
           {isLoading && <p>Chargement de la galerie.</p>}
-          {
-            mediaApi &&
-              mediaApi.map((media) => (
-                <ImageGallery
+          {displayedMedia &&
+            displayedMedia
+              .map((media, key) => (
+                <SquareImageGallery
                   key={media.directus_files_id.id}
-                  order={media.order}
-                  showImg={showOverlay}
+                  order={media.order || key}
                   {...media.directus_files_id}
+                  onClick={() => showOverlay(media)}
                 />
               ))
-            // .slice(-1 * pagination)
-          }
+              .slice(-1 * nbDisplayedItem)
+              .reverse()}
 
-          {!mediaApi && <p>Un problème est survenu. Impossible de charger les réalisations.</p>}
+          {!displayedMedia && (
+            <p>Un problème est survenu. Impossible de charger les réalisations.</p>
+          )}
         </div>
 
-        {/* realArrPos !== undefined && (
+        {/* OVERLAY */}
+        {fullImage !== undefined && (
           <div
             className={css.gallery__overlay}
             aria-hidden
@@ -138,14 +148,15 @@ export default function GalleryAPI({ title, description, apiUrl }: Props) {
               <i className="icon-spinner9" />
 
               <Image
-                src={`${process.env.api}/assets/${displayedRealisations?.[realArrPos].image}` || ''}
+                // DEV : static URL
+                src={`https://cms.pittetfreres.ch/assets/${fullImage.directus_files_id.id}` || ''}
                 alt={''}
                 width={1500}
                 height={1500}
               />
 
               <figcaption className={css.gallery__overlay__img}>
-                <small>{displayedRealisations?.[realArrPos].description}</small>
+                {/* <small>{displayedMedia?.[realArrPos].description}</small> */}
               </figcaption>
             </figure>
             <button type="button" onClick={hideOverlay} className={css.btn__close}>
@@ -160,17 +171,15 @@ export default function GalleryAPI({ title, description, apiUrl }: Props) {
               <Image src={arrowDown} alt={''}></Image>
             </button>
           </div>
-        ) */}
+        )}
 
-        {/* pagination < galleryLength && (
-          <button
-            className={`${btn.btn} ${btn.btn__secondary}`}
-            type="button"
-            onClick={increasePagination}
-          >
+        {nbDisplayedItem !== 0 && nbDisplayedItem < mediaApi.length ? (
+          <button className={`${btnCss.btn} ${btnCss}`} type="button" onClick={increasePagination}>
             En voir plus
           </button>
-        ) */}
+        ) : (
+          ''
+        )}
       </div>
     </section>
   );

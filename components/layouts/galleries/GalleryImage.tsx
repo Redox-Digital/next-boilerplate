@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import css from './Galleries.module.scss';
-import { DirectusFileType } from '@/types/Types';
+import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
 
 interface GalleryMediaType extends DirectusFileType {
   order: number;
-  showImg: (id: number) => void;
+  onClick: () => void;
+  // showImg: (file: DirectusGalleryApiType) => void;
 }
 
-export default function ImageGallery({
+export default function SquareImageGallery({
   id,
   title,
   description,
@@ -15,16 +16,18 @@ export default function ImageGallery({
   width,
   height,
   order,
-  showImg,
-}: GalleryMediaType) {
+  onClick,
+}: // showImg,
+GalleryMediaType) {
   return (
-    <figure className={css.image} onClick={() => showImg(order)}>
+    <figure className={css.image} onClick={onClick}>
       <Image
         // DEV : static URL
         src={`https://cms.pittetfreres.ch/assets/${id}` || ''}
         alt={description || ''}
         width={500}
         height={500}
+        data-order={order}
       />
       <figcaption className={css.image__overlay}>
         <p>{title}</p>
