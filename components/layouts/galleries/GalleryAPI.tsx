@@ -1,20 +1,28 @@
-import SquareImageGallery from './GalleryImage';
-import Image from 'next/image';
 import css from './Galleries.module.scss';
 import btnCss from '@/components/navigation/Button.module.scss';
 import { useEffect, useState } from 'react';
-import arrowDown from '/public/pictograms/arrow-down.svg';
-import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
+import { DirectusGalleryApiType } from '@/types/Types';
+import Overlay from './GalleryOverlay';
+import Image from 'next/image';
+import SquareImage, { MasonryImage } from './GalleryImage';
 
 type Props = {
   title: string;
   description?: string;
+  masonry?: boolean;
   viewer?: boolean;
   pagination?: number;
   apiUrl: string;
 };
 
-export default function SquareGallery({ title, description, viewer, pagination, apiUrl }: Props) {
+export default function Gallery({
+  title,
+  description,
+  masonry,
+  viewer,
+  pagination,
+  apiUrl,
+}: Props) {
   // ### GET MEDIA FROM API ###
   const [mediaApi, setMedia] = useState<DirectusGalleryApiType[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -34,57 +42,10 @@ export default function SquareGallery({ title, description, viewer, pagination, 
       setLoading(false);
     }
   }, [apiUrl]);
-  // ### .GET MEDIA ###
-
-  // ### PAGINATION ###
-  const paginationStep = pagination || 0;
-  const [nbDisplayedItem, setNbDisplayedItem] = useState<number>(paginationStep);
-
-  // Work object (used for pagination), stored in reversed order (then re-reversed at display)
-  // The gallery files must habe an `order` field.
-  const displayedMedia = mediaApi.sort((a, b) => (a.order && b.order ? b.order - a.order : 0));
-
-  const increasePagination = () => {
-    setNbDisplayedItem(
-      nbDisplayedItem + paginationStep < mediaApi.length
-        ? nbDisplayedItem + paginationStep
-        : mediaApi.length
-    );
-  };
-  // ### .PAGINATION ###
 
   // ### IMAGE FULL-SIZE VIEWER ###
   const [fullImage, setFullImage] = useState<DirectusGalleryApiType>();
-  const [arrayCursor, setArrayCursor] = useState<number>();
-
-  const showOverlay = (file: DirectusGalleryApiType) => {
-    setFullImage(file);
-    console.log(file ? mediaApi.indexOf(file) : undefined);
-  };
-
-  const hideOverlay = () => {
-    setFullImage(undefined);
-    setArrayCursor(undefined);
-  };
-
-  const keyboardNavigation = (evt: React.KeyboardEvent) => {
-    switch (evt.key) {
-      case 'Escape':
-        hideOverlay();
-        break;
-
-      case 'ArrowRight':
-        prevImg();
-        break;
-
-      case 'ArrowLeft':
-        nextImg();
-        break;
-
-      default:
-        break;
-    }
-  };
+  const toggleOverlay = (file?: DirectusGalleryApiType) => setFullImage(file);
 
   const nextImg = () => {
     if (fullImage) {
@@ -102,85 +63,138 @@ export default function SquareGallery({ title, description, viewer, pagination, 
   };
 
   useEffect(() => {
-    arrayCursor !== undefined
+    fullImage !== undefined
       ? (document.body.style.overflow = 'hidden')
       : (document.body.style.overflow = 'auto');
-  }, [arrayCursor]);
+  }, [fullImage]);
 
   return (
     <section className={`${css.gallery}`}>
       <div className="container">
-        <div className={css.service__titles}>
+        <div className={css.titles}>
           <h2>{title}</h2>
           {description && <p>{description}</p>}
         </div>
-        <div className={css.gallery__images}>
-          {isLoading && <p>Chargement de la galerie.</p>}
-          {displayedMedia &&
-            displayedMedia
-              .map((media, key) => (
-                <SquareImageGallery
-                  key={media.directus_files_id.id}
-                  order={media.order || key}
-                  {...media.directus_files_id}
-                  onClick={() => showOverlay(media)}
-                />
-              ))
-              .slice(-1 * nbDisplayedItem)
-              .reverse()}
+        {isLoading && <p>Chargement de la galerie.</p>}
+        {mediaApi &&
+          (masonry ? (
+            <MasonryGallery media={mediaApi} viewer={viewer} toggleOverlay={toggleOverlay} />
+          ) : (
+            <SquareGallery
+              media={mediaApi}
+              toggleOverlay={toggleOverlay}
+              viewer={viewer}
+              pagination={pagination}
+            />
+          ))}
 
-          {!displayedMedia && (
-            <p>Un problème est survenu. Impossible de charger les réalisations.</p>
-          )}
-        </div>
+        {!mediaApi && <p>Un problème est survenu. Impossible de charger les réalisations.</p>}
 
         {/* OVERLAY */}
-        {fullImage !== undefined && (
-          <div
-            className={css.gallery__overlay}
-            aria-hidden
-            ref={(div) => div?.focus()}
-            onKeyDown={(evt) => keyboardNavigation(evt)}
-            tabIndex={-1}
-          >
-            <div className={css.gallery__overlay__drop} onClick={hideOverlay} />
-            <figure className={css.image}>
-              <i className="icon-spinner9" />
-
-              <Image
-                // DEV : static URL
-                src={`https://cms.pittetfreres.ch/assets/${fullImage.directus_files_id.id}` || ''}
-                alt={''}
-                width={1500}
-                height={1500}
-              />
-
-              <figcaption className={css.gallery__overlay__img}>
-                {/* <small>{displayedMedia?.[realArrPos].description}</small> */}
-              </figcaption>
-            </figure>
-            <button type="button" onClick={hideOverlay} className={css.btn__close}>
-              Fermer
-            </button>
-
-            <button type="button" onClick={prevImg} className={css.btn__next}>
-              <Image src={arrowDown} alt={''}></Image>
-            </button>
-
-            <button type="button" onClick={nextImg} className={css.btn__prev}>
-              <Image src={arrowDown} alt={''}></Image>
-            </button>
-          </div>
-        )}
-
-        {nbDisplayedItem !== 0 && nbDisplayedItem < mediaApi.length ? (
-          <button className={`${btnCss.btn} ${btnCss}`} type="button" onClick={increasePagination}>
-            En voir plus
-          </button>
+        {fullImage && viewer ? (
+          <Overlay
+            fullImage={fullImage}
+            toggleOverlay={toggleOverlay}
+            prevImg={prevImg}
+            nextImg={nextImg}
+          />
         ) : (
           ''
         )}
+        {/* .OVERLAY */}
       </div>
     </section>
+  );
+}
+
+type SquareGalleryProps = {
+  media: DirectusGalleryApiType[];
+  viewer?: boolean;
+  pagination?: number;
+  toggleOverlay: (file?: DirectusGalleryApiType) => void;
+};
+
+function SquareGallery({ media, viewer, pagination = 0, toggleOverlay }: SquareGalleryProps) {
+  const displayedMedia = media.sort((a, b) => (a.order && b.order ? b.order - a.order : 0));
+  const [nbDisplayedItem, setNbDisplayedItem] = useState<number>(pagination);
+
+  const increasePagination = () => {
+    setNbDisplayedItem(
+      nbDisplayedItem + pagination < media.length ? nbDisplayedItem + pagination : media.length
+    );
+  };
+
+  return (
+    <>
+      <div className={css.galleryImages}>
+        {displayedMedia &&
+          displayedMedia
+            .map((medium) => (
+              <SquareImage
+                key={medium.directus_files_id.id}
+                src={`https://cms.pittetfreres.ch/assets/${medium.directus_files_id.id}?width=500&height=500&fit=cover`}
+                {...medium.directus_files_id}
+                onClick={() => toggleOverlay(medium)}
+                viewer={viewer}
+              />
+            ))
+            .slice(-1 * nbDisplayedItem)
+            .reverse()}
+      </div>
+      {nbDisplayedItem !== 0 && nbDisplayedItem < media.length ? (
+        <button className={`${btnCss.btn}`} type="button" onClick={increasePagination}>
+          En voir plus
+        </button>
+      ) : (
+        ''
+      )}
+    </>
+  );
+}
+
+type MasonryGalleryProps = {
+  media: DirectusGalleryApiType[];
+  viewer?: boolean;
+  toggleOverlay: (file?: DirectusGalleryApiType) => void;
+};
+
+/**
+ * No pagination for now
+ */
+function MasonryGallery({ media, viewer, toggleOverlay }: MasonryGalleryProps) {
+  // DEV : static value
+  const colNb = 3;
+
+  // Initialize N empty columns
+  const columns: DirectusGalleryApiType[][] = Array.from({ length: colNb }, () => []);
+  const columnHeights = Array(colNb).fill(0);
+
+  for (const medium of media) {
+    // Find the column with the smallest accumulated height,
+    // add the next item into the "best" column
+    const targetColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+    columns[targetColumnIndex].push(medium);
+
+    // Increase that column’s height by the media height
+    columnHeights[targetColumnIndex] += medium.directus_files_id.height;
+  }
+  console.log(columns);
+
+  return (
+    <div className={css.masonryGrid}>
+      {columns.map((col, colIndex) => (
+        <div key={colIndex} className={css.masonryCol}>
+          {col.map((medium) => (
+            <MasonryImage
+              key={medium.id}
+              src={`https://cms.pittetfreres.ch/assets/${medium.directus_files_id.id}?width=500`}
+              {...medium.directus_files_id}
+              onClick={() => toggleOverlay(medium)}
+              viewer={viewer}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }

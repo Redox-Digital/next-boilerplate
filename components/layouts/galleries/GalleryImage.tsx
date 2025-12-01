@@ -3,35 +3,77 @@ import css from './Galleries.module.scss';
 import { DirectusFileType, DirectusGalleryApiType } from '@/types/Types';
 
 interface GalleryMediaType extends DirectusFileType {
-  order: number;
+  src: string;
   onClick: () => void;
+  viewer?: boolean;
+  className?: string;
   // showImg: (file: DirectusGalleryApiType) => void;
 }
 
-export default function SquareImageGallery({
+export default function SquareImage({
   id,
   title,
   description,
   type,
   width,
   height,
-  order,
+  src,
+  viewer,
   onClick,
+  className,
 }: // showImg,
 GalleryMediaType) {
   return (
-    <figure className={css.image} onClick={onClick}>
+    <figure
+      className={`${css.image} ${css.sqImage} ${viewer || css.readOnly} ${className}`}
+      onClick={viewer ? onClick : () => null}
+    >
       <Image
         // DEV : static URL
-        src={`https://cms.pittetfreres.ch/assets/${id}` || ''}
+        src={src}
         alt={description || ''}
         width={500}
         height={500}
-        data-order={order}
       />
-      <figcaption className={css.image__overlay}>
-        <p>{title}</p>
-      </figcaption>
+      {viewer && (
+        <figcaption className={css.imageOverlay}>
+          <p>{title}</p>
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+export function MasonryImage({
+  id,
+  title,
+  description,
+  type,
+  width,
+  height,
+  src,
+  viewer,
+  onClick,
+  className,
+}: // showImg,
+GalleryMediaType) {
+  return (
+    <figure
+      className={`${css.masonryImage} ${viewer || css.readOnly} ${className}`}
+      onClick={viewer ? onClick : () => null}
+    >
+      <Image
+        // DEV : static URL
+        src={src}
+        alt={description || ''}
+        width={width}
+        height={height}
+      />
+      {viewer && (
+        <figcaption className={css.imageOverlay}>
+          <p>{title}</p>
+        </figcaption>
+      )}
     </figure>
   );
 }
