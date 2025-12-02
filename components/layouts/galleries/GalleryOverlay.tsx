@@ -5,12 +5,19 @@ import arrowDown from '/public/pictograms/arrow-down.svg';
 
 type OverlayProps = {
   fullImage: DirectusGalleryApiType;
+  invertBtns?: boolean;
   toggleOverlay: () => void;
   prevImg: () => void;
   nextImg: () => void;
 };
 
-export default function Overlay({ fullImage, toggleOverlay, prevImg, nextImg }: OverlayProps) {
+export default function Overlay({
+  fullImage,
+  invertBtns,
+  toggleOverlay,
+  prevImg,
+  nextImg,
+}: OverlayProps) {
   const keyboardNavigation = (evt: React.KeyboardEvent) => {
     switch (evt.key) {
       case 'Escape':
@@ -18,11 +25,12 @@ export default function Overlay({ fullImage, toggleOverlay, prevImg, nextImg }: 
         break;
 
       case 'ArrowRight':
-        prevImg();
+        invertBtns ? prevImg() : nextImg();
+
         break;
 
       case 'ArrowLeft':
-        nextImg();
+        invertBtns ? nextImg() : prevImg();
         break;
 
       default:
@@ -61,11 +69,11 @@ export default function Overlay({ fullImage, toggleOverlay, prevImg, nextImg }: 
         Fermer
       </button>
 
-      <button type="button" onClick={prevImg} className={css.btn__next}>
+      <button type="button" onClick={invertBtns ? nextImg : prevImg} className={css.btn__left}>
         <Image src={arrowDown} alt={''} />
       </button>
 
-      <button type="button" onClick={nextImg} className={css.btn__prev}>
+      <button type="button" onClick={invertBtns ? prevImg : nextImg} className={css.btn__right}>
         <Image src={arrowDown} alt={''} />
       </button>
     </div>

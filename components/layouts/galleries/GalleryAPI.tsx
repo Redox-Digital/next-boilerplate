@@ -1,6 +1,6 @@
 import css from './Galleries.module.scss';
 import btnCss from '@/components/navigation/Button.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DirectusGalleryApiType } from '@/types/Types';
 import Overlay from './GalleryOverlay';
 import Image from 'next/image';
@@ -97,6 +97,7 @@ export default function Gallery({
             toggleOverlay={toggleOverlay}
             prevImg={prevImg}
             nextImg={nextImg}
+            invertBtns={!masonry}
           />
         ) : (
           ''
@@ -163,22 +164,14 @@ type MasonryGalleryProps = {
  */
 function MasonryGallery({ media, viewer, toggleOverlay }: MasonryGalleryProps) {
   // DEV : static value
-  const colNb = 3;
+  const columnCount = useResponsiveColumns({
+    default: 1,
+    500: 2,
+    900: 3,
+    1200: 4,
+  });
 
-  // Initialize N empty columns
-  const columns: DirectusGalleryApiType[][] = Array.from({ length: colNb }, () => []);
-  const columnHeights = Array(colNb).fill(0);
-
-  for (const medium of media) {
-    // Find the column with the smallest accumulated height,
-    // add the next item into the "best" column
-    const targetColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-    columns[targetColumnIndex].push(medium);
-
-    // Increase that column’s height by the media height
-    columnHeights[targetColumnIndex] += medium.directus_files_id.height;
-  }
-  console.log(columns);
+  const columns = createMasonryColumns(media, columnCount);
 
   return (
     <div className={css.masonryGrid}>
@@ -197,4 +190,77 @@ function MasonryGallery({ media, viewer, toggleOverlay }: MasonryGalleryProps) {
       ))}
     </div>
   );
+}
+
+export function createMasonryColumns(media: DirectusGalleryApiType[], colCount: number) {
+  // Initialize N empty columns
+  const columns: DirectusGalleryApiType[][] = Array.from({ length: colCount }, () => []);
+  const columnHeights = Array(colCount).fill(0);
+
+  for (const item of media) {
+    // Find the column with the smallest accumulated height
+    const targetColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+
+    // Push this item into the "best" column
+    columns[targetColumnIndex].push(item);
+
+    // Increase that column’s height by the media height
+    columnHeights[targetColumnIndex] += item.directus_files_id.height;
+  }
+
+  return columns;
+}
+
+type BreakpointsType = {
+  [width: number]: number; // e.g. 1024: 3
+} & {
+  default: number;
+};
+
+function useResponsiveColumns(breakpoints: BreakpointsType, debounceDelay = 150) {
+  const [columns, setColumns] = useState<number>(breakpoints.default);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return; // SSR safety
+
+    const handleResize = () => {
+      // Clear any previous queued updates
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+      // Debounce
+      timeoutRef.current = setTimeout(() => {
+        // Use RAF for smoothness
+        window.requestAnimationFrame(() => {
+          const width = window.innerWidth;
+
+          let col = breakpoints.default;
+
+          const sorted = Object.keys(breakpoints)
+            .filter((bp) => bp !== 'default')
+            .map(Number)
+            .sort((a, b) => a - b);
+
+          for (const bp of sorted) {
+            if (width >= bp) col = breakpoints[bp];
+          }
+
+          setColumns(col);
+        });
+      }, debounceDelay);
+    };
+
+    // Run once on mount
+    handleResize();
+
+    // Listener
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [breakpoints, debounceDelay]);
+
+  return columns;
 }

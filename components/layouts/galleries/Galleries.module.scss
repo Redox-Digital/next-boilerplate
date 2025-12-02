@@ -145,8 +145,8 @@
 
   > .btn {
     &__close,
-    &__next,
-    &__prev {
+    &__left,
+    &__right {
       position: absolute;
       background: none;
       border: solid 2px var(--accent-dark);
@@ -168,8 +168,8 @@
       font-size: var(--fs-sm);
     }
 
-    &__next,
-    &__prev {
+    &__left,
+    &__right {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -184,7 +184,7 @@
       }
     }
 
-    &__next {
+    &__right {
       //left: calc(var(--md) * 2 + 50px);
       transform: rotate(-90deg) translateY(calc((50px + var(--md)) / 2));
 
@@ -195,7 +195,7 @@
       }
     }
 
-    &__prev {
+    &__left {
       //left: var(--md);
       transform: rotate(90deg) translateY(calc((50px + var(--md)) / 2));
 
