@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-// Adjust this to your production domain
+// Adjust this section to your production domain, and project specs
 const BASE_URL = 'https://your-domain.ch';
 
 async function fetchDynamicPages() {
@@ -32,14 +32,19 @@ async function generateSitemap() {
     generateUrl(`${BASE_URL}/${page.url}`, page.priority)
   );
 
-  const projects = await fetchProjects();
-  const projectUrls = projects.map((project) =>
+  // DEV : update this section according to your project's specs
+  /*
+  const pages = await fetchDynamicPages();
+  const pagesUrls = projects.map((page) =>
     generateUrl(`${BASE_URL}/projets/${project.id}`, 0.4)
   );
+  */
+  // DEV values
+  const pagesUrls = [];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${[...staticUrls, ...projectUrls].join('')}
+  ${[...staticUrls, ...pagesUrls].join('')}
   </urlset>`;
 
   const outputDir = path.join(process.cwd(), 'out');

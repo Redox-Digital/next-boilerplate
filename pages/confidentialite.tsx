@@ -20,16 +20,15 @@ export default function LPD({ handleCookiePolicy }: Props) {
             <br /> & mentions légales
           </>
         }
-        subtitle={
-          <>
-            Vous trouverez sur cette page toutes les informations concernant les traitements de vos
-            données sur notre site internet. Vous pouvez à tout moment{' '}
-            <a href="#lpd-cookies">refuser l&rsquo;utilisation de cookies tiers</a>, ce choix
-            n&rsquo;impactera pas votre expérience sur notre site.
-          </>
-        }
-        source="/layouts/hero/hero.webp"
-      />
+        imgUrl="/layouts/hero/hero.webp"
+      >
+        <p>
+          Vous trouverez sur cette page toutes les informations concernant les traitements de vos
+          données sur notre site internet. Vous pouvez à tout moment{' '}
+          <a href="#lpd-cookies">refuser l&rsquo;utilisation de cookies tiers</a>, ce choix
+          n&rsquo;impactera pas votre expérience sur notre site.
+        </p>
+      </Hero>
       <main className={css.lpd}>
         <section className="container">
           <p>
@@ -130,7 +129,7 @@ export default function LPD({ handleCookiePolicy }: Props) {
             Redox Digital Sàrl
           </a>
 
-          <Button to={'/'}>Retour à l&rsquo;accueil</Button>
+          <Button href={'/'}>Retour à l&rsquo;accueil</Button>
         </section>
 
         <hr className="container" />
@@ -246,7 +245,7 @@ export default function LPD({ handleCookiePolicy }: Props) {
           <h3 id="lpd-cookies">5. Cookies et services d&rsquo;analyse</h3>
           <p>Pour le site web mydomain.ch, nous n’utilisons aucun cookie de tiers.</p>
 
-          <Button to={'/'}>Retour à l&rsquo;accueil</Button>
+          <Button href={'/'}>Retour à l&rsquo;accueil</Button>
         </section>
       </main>
     </>
