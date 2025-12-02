@@ -10,18 +10,9 @@ export default function Contact() {
     'Découvrez notre emplacement et contactez-nous pour toute question.',
   ];
 
-  const structuredData = generateStructuredData({
-    page: {
-      url: `${process.env.domain}/contact'`,
-      title: pageTitle,
-    },
-  });
-
   return (
     <>
-      <Metadata title={pageTitle} description={pageDesc}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
-      </Metadata>
+      <Metadata title={pageTitle} description={pageDesc} />
 
       <TextHero title={pageTitle} surtitle={'Contact'} half>
         <p>{pageDesc}</p>

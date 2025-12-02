@@ -1,18 +1,19 @@
 import Button from '@/components/navigation/Button';
 import Hero from '@/components/layouts/Hero';
 import css from './Confidentialite.module.scss';
-import Head from 'next/head';
+import Metadata from '@/components/content/Metadata';
 
 type Props = {
   handleCookiePolicy: (answer: boolean) => void;
 };
 
 export default function LPD({ handleCookiePolicy }: Props) {
+  const [pageTitle, pageDesc] = ['Confidentialité', 'Protection des données & mentions légales'];
+
   return (
     <>
-      <Head>
-        <title>My Company | Protection des données & mentions légales</title>
-      </Head>
+      <Metadata title={pageTitle} description={pageDesc} />
+
       <Hero
         title={
           <>

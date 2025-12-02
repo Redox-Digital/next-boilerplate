@@ -15,13 +15,6 @@ export default function About() {
     'Nous sommes une entreprise active dans la formation des apprentis.',
   ];
 
-  const structuredData = generateStructuredData({
-    page: {
-      url: `${process.env.domain}/a-propos'`,
-      title: pageTitle,
-    },
-  });
-
   const staticFaq: AccordionEltType[] = [
     {
       id: 'faq-1',
@@ -58,9 +51,7 @@ export default function About() {
 
   return (
     <>
-      <Metadata title={pageTitle} description={pageDesc}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
-      </Metadata>
+      <Metadata title={pageTitle} description={pageDesc} />
 
       <TextHero title={pageTitle} surtitle={'À propos'} half>
         <p>{pageDesc}</p>

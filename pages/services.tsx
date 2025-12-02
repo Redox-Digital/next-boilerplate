@@ -12,19 +12,19 @@ export default function Services() {
     'À votre service',
     'Nous vous accompagnons tout au long de vos projets digitaux.',
   ];
-
-  const structuredData = generateStructuredData({
-    page: {
-      url: `${process.env.domain}/services'`,
-      title: pageTitle,
-    },
-  });
+  const addstructuredData = {
+    services: [
+      {
+        serviceType: 'Stratégie & marketing digital',
+        description:
+          'Gestion stratégique et créative de la présence des marques sur les réseaux sociaux.',
+      },
+    ],
+  };
 
   return (
     <>
-      <Metadata title={pageTitle} description={pageDesc}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
-      </Metadata>
+      <Metadata title={pageTitle} description={pageDesc} addStructuredData={addstructuredData} />
 
       <TextHero title={pageTitle} surtitle={'Nos services'} half>
         <p>{pageDesc}</p>

@@ -1,9 +1,17 @@
 import { TextHero } from '@/components/layouts/Hero';
 import css from './Portfolio.module.scss';
 import GalleryAPI from '@/components/layouts/galleries/GalleryAPI';
+import Metadata from '@/components/content/Metadata';
 export default function Portfolio() {
+  const [pageTitle, pageDescription] = [
+    'Portfolio',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+  ];
+
   return (
     <>
+      <Metadata title={pageTitle} description={pageDescription} />
+
       <TextHero title={"Galerie d'images"} half />
 
       <main>

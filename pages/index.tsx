@@ -3,7 +3,6 @@ import TextImageSection from '@/components/layouts/TextImageSection';
 import Button from '@/components/navigation/Button';
 import RichCTA, { BannerCTA } from '@/components/content/CTA';
 import Metadata from '@/components/content/Metadata';
-import { generateStructuredData } from '@/components/helpers/MetaDatahelper';
 import MediaHero from '@/components/layouts/Hero';
 import LogoBanner, { LogoWall } from '@/components/content/LogoList';
 import { partners, reviews } from '@/constants/projectSpecifics';
@@ -13,11 +12,7 @@ import CarrouselSection from '@/components/layouts/carrousel/EmblaCarrousel';
 import ReviewBlock from '@/components/content/ReviewBlock';
 
 export default function Home() {
-  const structuredData = generateStructuredData({
-    page: {
-      url: process.env.domain || '',
-      title: 'Redox Digital | Marketing digital, solutions web sur-mesure, création de contenu',
-    },
+  const addstructuredData = {
     services: [
       {
         serviceType: 'Stratégie & marketing digital',
@@ -25,13 +20,11 @@ export default function Home() {
           'Gestion stratégique et créative de la présence des marques sur les réseaux sociaux.',
       },
     ],
-  });
+  };
 
   return (
     <>
-      <Metadata>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
-      </Metadata>
+      <Metadata addStructuredData={addstructuredData} />
 
       <MediaHero
         title="My Company"
