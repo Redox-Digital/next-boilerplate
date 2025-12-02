@@ -78,7 +78,12 @@ export default function Gallery({
         {isLoading && <p>Chargement de la galerie.</p>}
         {mediaApi &&
           (masonry ? (
-            <MasonryGallery media={mediaApi} viewer={viewer} toggleOverlay={toggleOverlay} />
+            <MasonryGallery
+              media={mediaApi}
+              viewer={viewer}
+              breakpoints={{ default: 2, 900: 3, 1200: 4 }}
+              toggleOverlay={toggleOverlay}
+            />
           ) : (
             <SquareGallery
               media={mediaApi}
@@ -156,20 +161,21 @@ function SquareGallery({ media, viewer, pagination = 0, toggleOverlay }: SquareG
 type MasonryGalleryProps = {
   media: DirectusGalleryApiType[];
   viewer?: boolean;
+  breakpoints?: BreakpointsType;
   toggleOverlay: (file?: DirectusGalleryApiType) => void;
 };
 
 /**
  * No pagination for now
  */
-function MasonryGallery({ media, viewer, toggleOverlay }: MasonryGalleryProps) {
+function MasonryGallery({
+  media,
+  viewer,
+  breakpoints = { default: 1, 500: 2, 900: 3, 1200: 4 },
+  toggleOverlay,
+}: MasonryGalleryProps) {
   // DEV : static value
-  const columnCount = useResponsiveColumns({
-    default: 1,
-    500: 2,
-    900: 3,
-    1200: 4,
-  });
+  const columnCount = useResponsiveColumns(breakpoints);
 
   const columns = createMasonryColumns(media, columnCount);
 

@@ -288,12 +288,20 @@
 .masonryGrid {
   display: flex;
   flex-direction: row;
-  gap: var(--md);
+
+  --gap: var(--sm);
+
+  gap: var(--gap);
+
+  @media screen and (min-width: 900px) {
+    --gap: var(--md);
+  }
 
   > .masonryCol {
     display: flex;
     flex-direction: column;
-    gap: var(--md);
+    gap: var(--gap);
+
     width: 100%;
   }
 }

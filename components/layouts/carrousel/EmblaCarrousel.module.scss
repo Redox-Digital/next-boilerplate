@@ -10,11 +10,12 @@
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--lg);
   overflow: hidden;
   width: 100%;
-  max-width: var(--max-container-width);
-  padding: var(--sct-default-margins);
+  padding-block: var(--sct-vert-margin);
+
   margin-inline: auto;
 
   > .head {
@@ -25,14 +26,19 @@
     text-align: center;
     width: 100%;
     max-width: var(--max-paragraph-width);
+    padding-inline: var(--sct-horiz-margin);
+
     margin-inline: auto;
   }
 }
 
 .embla__viewport {
+  width: 100%;
   overflow: visible;
 
   cursor: grab;
+  padding-inline: var(--sct-horiz-margin);
+  max-width: var(--max-container-width);
 
   &:active {
     cursor: grabbing;
@@ -66,6 +72,9 @@
   flex-direction: row;
   gap: var(--lg);
   justify-content: center;
+
+  max-width: var(--max-container-width);
+  padding-inline: var(--sct-horiz-margin);
 }
 
 .embla__buttons,
