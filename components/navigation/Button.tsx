@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import css from './Button.module.scss';
-import Image from 'next/image';
 
 type Props = {
   href?: string;
@@ -11,6 +10,7 @@ type Props = {
   blank?: boolean;
   title?: string;
   type?: 'button' | 'submit' | 'reset';
+  tabIndex?: number;
   onClick?: () => void;
   children?: string | React.ReactNode;
 };
@@ -25,6 +25,7 @@ export default function Button({
   blank,
   title,
   type = 'button',
+  tabIndex,
   onClick,
 }: Props) {
   return href ? (
@@ -36,6 +37,7 @@ export default function Button({
       target={blank ? '_blank' : ''}
       onClick={onClick}
       title={title}
+      tabIndex={tabIndex}
     >
       {children}
     </Link>

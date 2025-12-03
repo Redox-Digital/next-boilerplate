@@ -26,6 +26,12 @@
       }
     }
   }
+
+  .honey {
+    position: absolute;
+    visibility: hidden;
+    left: -300vw;
+  }
 }
 
 @keyframes spin {

@@ -15,6 +15,8 @@ export default function ContactForm() {
     phone: '',
     company: '',
     message: '',
+    companyDomain: '', // Honey
+    timestamp: Date.now(),
   });
 
   const handleChange = (e: any) => {
@@ -43,6 +45,8 @@ export default function ContactForm() {
       body: JSON.stringify(formInputs),
     };
 
+    console.log(JSON.stringify(formInputs));
+
     try {
       const response = await fetch(endpoint, options);
       if (!response.ok) {
@@ -55,6 +59,8 @@ export default function ContactForm() {
           phone: '',
           company: '',
           message: '',
+          companyDomain: '', // Honey
+          timestamp: Date.now(),
         });
       }
     } catch (error) {
@@ -69,6 +75,25 @@ export default function ContactForm() {
         <div className={css.container}>
           <h2>Formulaire de contact</h2>
           <form onSubmit={handleSubmit} id="form">
+            {/* Anti spam – Honeypot */}
+            <input
+              type="text"
+              className={css.honey}
+              name="companyDomain"
+              autoComplete="off"
+              tabIndex={-1}
+              value={formInputs.companyDomain}
+              onChange={handleChange}
+            />
+
+            {/* Anti spam – Timestamp validation */}
+            <input
+              type="hidden"
+              name="timestamp"
+              value={formInputs.timestamp}
+              onChange={handleChange}
+            />
+
             <TextInput
               changeHandler={handleChange}
               type={'text'}

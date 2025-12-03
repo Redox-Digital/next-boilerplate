@@ -143,7 +143,7 @@ function MobileMenu({ open, links, toggleMenu }: MobileMenuProps) {
             <>
               {link.subLinks ? (
                 <div className={css.submenu} key={`${link.url}-mobile`}>
-                  <Link href={link.url} onClick={toggleMenu}>
+                  <Link href={link.url} onClick={toggleMenu} tabIndex={-1}>
                     {link.label}
                   </Link>
                   <span className={css.sublinks} key={link.url}>
@@ -152,6 +152,7 @@ function MobileMenu({ open, links, toggleMenu }: MobileMenuProps) {
                         key={`${subLink.url}-mobileSubmenu`}
                         href={subLink.url}
                         onClick={toggleMenu}
+                        tabIndex={-1}
                       >
                         {subLink.label}
                       </Link>
@@ -159,11 +160,17 @@ function MobileMenu({ open, links, toggleMenu }: MobileMenuProps) {
                   </span>
                 </div>
               ) : link.btn ? (
-                <Button key={`${link.url}-mobile`} href={link.url} small onClick={toggleMenu}>
+                <Button
+                  key={`${link.url}-mobile`}
+                  href={link.url}
+                  small
+                  onClick={toggleMenu}
+                  tabIndex={-1}
+                >
                   {link.label}
                 </Button>
               ) : (
-                <Link key={`${link.url}-mobile`} href={link.url} onClick={toggleMenu}>
+                <Link key={`${link.url}-mobile`} href={link.url} onClick={toggleMenu} tabIndex={-1}>
                   {link.label}
                 </Link>
               )}
