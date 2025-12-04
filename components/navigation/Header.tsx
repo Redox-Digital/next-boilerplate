@@ -16,7 +16,7 @@ export default function Header() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const changeBackground = () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 100) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -38,7 +38,7 @@ export default function Header() {
     if (typeof window !== 'undefined') {
       const displayOnScroll = () => {
         if (typeof window !== 'undefined') {
-          if (window.scrollY >= lastScrollY) {
+          if (window.scrollY >= lastScrollY && lastScrollY >= 0) {
             // if scroll down hide the navbar
             setScrollingUp(false);
           } else {

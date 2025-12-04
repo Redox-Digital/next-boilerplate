@@ -5,6 +5,9 @@ body {
   font-size: var(--fs-p);
   color: var(--black);
   background-color: var(--white);
+
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 p {
