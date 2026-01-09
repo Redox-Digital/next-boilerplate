@@ -1,0 +1,78 @@
+name: Deploy Static NextTS site
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Ensure temp folder exists
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
+            mkdir -p ~/_tmp
+
+      - name: Upload to temp folder via SFTP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT }}
+          source: 'out/*'
+          target: '~/_tmp/'
+          strip_components: 1
+
+      - name: Move temp to prod
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
+            rm -rf ${{ secrets.SFTP_REMOTE_PATH }}/*
+            mv ~/_tmp/* ${{ secrets.SFTP_REMOTE_PATH }}/
+            rm -rf ~/_tmp/*
+
+      - name: Get current date/time
+        id: current_time
+        run: echo "::set-output name=now::$(date '+%Y-%m-%d %H:%M:%S')"
+
+      - name: Notify Discord
+        if: always() # Toujours exécuté, même si le job échoue
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: <website-url> # DEV
+          DISCORD_AVATAR: <website-url>/socials/social_thumbnail.png
+        with:
+          args: |
+            ${{ job.status == 'success' && 'Déploiement terminé ✅' || 'Déploiement échoué ❌' }}
+
+            Timestamp : ${{ steps.current_time.outputs.now }}
+            Repository: `${{ github.repository }}`
+            Commit: `${{ github.sha }}`
